@@ -1,1 +1,15 @@
 /* Empty. Add your own CSS if you like */
+.cash-input{    
+    display: inline-block;
+    float: left;
+}
+.charge{
+	cursor: pointer;
+    margin-left: 10px;
+    font-size: 14px;
+    line-height: 2;
+}
+.charge-button{
+	min-height: 25px;
+	line-height: 25px;
+}

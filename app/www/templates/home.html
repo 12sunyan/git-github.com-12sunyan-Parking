@@ -1,9 +1,51 @@
 <ion-view view-title="用户中心">
   <ion-content>
-    <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
-    </ion-list>
+    <div style="margin-top: 5%; margin-right: auto; margin-left: auto; width: 80%">
+      <div class="green-bottom-border" style="margin-top: 8%; vertical-align: middle">
+        <div style="margin: 0 auto;">
+          <i class="ion-android-person login-icon">&nbsp&nbsp用户名</i>
+          <input type="text" class="login-input" placeholder="请填写用户名" ng-model="user.tel">
+        </div>
+      </div>
+      <div class="green-bottom-border" style="margin-top: 8%; vertical-align: middle">
+        <div style="margin: 0 auto;">
+          <i class="ion-android-lock login-icon">&nbsp&nbsp密码</i>
+          <input type="password" class="login-input" placeholder="请填写密码" ng-model="user.password">
+        </div>
+      </div>
+      <div class="green-bottom-border" style="margin-top: 8%; vertical-align: middle">
+        <div style="margin: 0 auto;">
+          <i class="ion-android-car login-icon">&nbsp&nbsp汽车型号</i>
+          <input type="text" class="login-input" placeholder="请填写汽车型号" ng-model="user.car">
+        </div>
+      </div>
+      <div class="green-bottom-border" style="margin-top: 8%; vertical-align: middle">
+        <div style="margin: 0 auto;">
+          <i class="ion-android-car login-icon">&nbsp&nbsp车牌号</i>
+          <input type="text" class="login-input" placeholder="请填写车牌号" ng-model="user.car">
+        </div>
+      </div>
+      <div class="green-bottom-border" style="margin-top: 8%; vertical-align: middle">
+        <div style="margin: 0 auto;">
+          <i class="ion-android-phone-portrait login-icon">&nbsp&nbsp手机号</i>
+          <input type="text" class="login-input" placeholder="请填写手机号" ng-model="user.car">
+        </div>
+      </div>
+      <div class="green-bottom-border" style="margin-top: 8%; vertical-align: middle">
+        <div style="margin: 0 auto;">
+          <i class="ion-cash login-icon">&nbsp&nbsp余额</i>
+        </div>
+        <div style="margin: 0 auto;">
+        	<a class = "charge" ng-click = "charge($event)">充值</a>
+        	<input type="text" class="cash-input" placeholder="请填写金额" disabled=true ng-model="user.money">
+        </div>
+      </div>
+      <div id="loginError" style="height: 20px; color: red; margin-top: 7%" ng-show="loginError.flag"><li>{{Registerrror.info}}</li></div>
+      <!--登录按钮-->
+      <div class="center-middle" ng-style="{'margin-top': (loginError.flag?'8%':'15%')}">
+        <button class="button button-balanced" ng-click="save()">保存</button>
+        <button class="button button-balanced" style = "margin-left:40%;" ng-click="giveup()">放弃</button>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

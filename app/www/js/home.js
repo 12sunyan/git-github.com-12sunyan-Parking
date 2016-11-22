@@ -1,6 +1,6 @@
 angular.module('parking')
     .controller('HomeCtrl',
-        function ($scope, $http, $state, $timeout) {
+        function ($scope, $http, $state, $timeout,$ionicPopup) {
             /*$scope.$watch('currentUser', function () {
                 if ($scope.currentUser) {
                     $scope.user = {
@@ -36,7 +36,7 @@ angular.module('parking')
                             }
                         }
                     }
-                    $scope.submit = function () {
+                    $scope.save = function () {
                             var data = {
                                 "nickname": $scope.user.nickname,
                                 "zip": $scope.user.zip,
@@ -67,22 +67,78 @@ angular.module('parking')
                             money:$scope.currentUser.account.money
                         }
                     };
-                    $scope.charge = function($event){
-                            $event.stopPropagation();
-                            $modal.open({
-                              animation:true,
-                              size:'lg',
-                              templateUrl: 'partials/user/charge.html',
-                              controller: 'ChargeCtrl',
-                              resolve: {
-                                user: function () {
-                                  return $scope.currentUser;
-                                },
+                    */
+                    /*$ionicModal.fromTemplateUrl('templates/charge.html', {
+                        scope: $scope,
+                        controller: 'ChargeCtrl',
+                        resolve: {
+                            user: function () {
+                                return $scope.currentUser;
+                            },
 
-                              },
-                            });
+                        },
+                        animation: 'slide-in-up'
+                    }).then(function(modal) {
+                        $scope.modal = modal
+                    }); 
+                    $scope.openModal = function() {
+                        $scope.modal.show()
                     }
-                }
+                    $scope.closeModal = function() {
+                        $scope.modal.hide();
+                    };
+                    $scope.$on('$destroy', function() {
+                        $scope.modal.remove();
+                    });*/
+                    $scope.charge = function($event){
+                        $event.stopPropagation();
+                        $scope.data = {};
+                        /*var myPopup = $ionicPopup.show({
+                            templateUrl: 'templates/charge.html',
+                            //scope:$scope,
+                            buttons: [{ //Array[Object] (可选)。放在弹窗footer内的按钮。
+                                text: '取消',
+                                type: 'button-default',
+                            }, {
+                                text: '确定',
+                                type: 'button-positive',
+                                onTap: function(e) {
+                                // 返回的值会导致处理给定的值。
+                                console.log($scope.data.chargemoney);
+                                return $scope.data.chargemoney;
+                                }
+                            }],
+                            animation: 'slide-in-up'
+                        });
+                        myPopup.then(function(res) {
+                            console.log('Tapped!', res);
+                            console.log($scope.data.chargemoney);
+                        });*/
+                           var myPopup = $ionicPopup.show({
+                             template: '<input type="number" ng-model="data.money">',
+                             title: '请输入充值金额',
+                             scope: $scope,
+                             buttons: [
+                               { text: '取消' },
+                               {
+                                 text: '<b>确定</b>',
+                                 type: 'button-positive',
+                                 onTap: function(e) {
+                                   if (!$scope.data.money) {
+                                     //不允许用户关闭，除非他键入wifi密码
+                                     e.preventDefault();
+                                   } else {
+                                     return $scope.data.money;
+                                   }
+                                 }
+                               },
+                             ]
+                           });
+                           myPopup.then(function(res) {
+                             console.log('Tapped!', res);
+                           });
+                    }
+                /*}
             })*/
         });
 
