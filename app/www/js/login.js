@@ -1,50 +1,30 @@
-angular.module('parking').controller('LoginCtrl', function ($location,$state, $scope, $http) {
+angular.module('parking').controller('LoginCtrl', function ($location,$state, $scope, $http,baseUrl, port, entity) {
+  $scope.user = {};
   $scope.login = function() {
-    $state.go('main.home');
-    /*var user = {
-      "tel": $scope.user.tel,
-      "password": $scope.user.password
-    };
-    var reqAdd = {
-      method: 'POST',
-      url: '/api/customer/login',
-      data: JSON.stringify(user)
-    };
-    //console.log($scope.select);
-    //console.log(reqAdd);
-    $http(reqAdd)
-      .success(function(data, header, config, status) {
-        if(data.code==500){
-          console.log(data);
-          alert("用户不存在");
+    if($scope.user.username==null||$scope.user.password==null){
+      alert("用户名密码不能为空");
+    }
+    else{
+      var getres = {
+        method:'GET',
+        url:baseUrl+port+entity+'user/?User.username='+$scope.user.username+'&User.password='+$scope.user.password,
+        headers: {'Content-Type': 'application/json'},
+        crossDomain: true
+      };
+      $http(getres).then(function(res){
+        console.log(res.data);
+        if(res.data.User==null){
+          alert("用户名或密码错误");
         }
         else{
-          if(localStorage['recent2']){
-            localStorage.removeItem("recent2");
-          };
-          if(data.data){
-            $scope.currentUser = data.data;
-            console.log($scope.currentUser);
-            coverAuth.setCurrentUser($scope.currentUser);
-            localStorage['user'] = JSON.stringify($scope.currentUser);
-            if(!sessionStorage['history']){
-              $state.go('main.home', {
-                reload: true
-              });
-            }
-            else{
-              $location.path(sessionStorage['history']);
-            }
-          }
-          else{
-            document.getElementById("login").disabled=false;
-            alert('网络错误，请重试');
-          }
-        }        
-      }).error(function(res) {
-        document.getElementById("login").disabled=false;
-        alert('用户名或密码错误');
-      });*/
-  };
+          $scope.currentUser = res.data.User[0];
+          console.log($scope.currentUser);
+          //coverAuth.setCurrentUser($scope.currentUser);
+          localStorage['user'] = JSON.stringify($scope.currentUser);
+          $state.go('main.home');
+        }
+      });
+    }
+  }
 
 });

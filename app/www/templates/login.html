@@ -10,19 +10,17 @@
 			<div class="green-bottom-border" style="margin-top: 15%; vertical-align: middle">
 				<div style="margin: 0 auto;">
 					<i class="ion-android-person login-icon"></i>
-					<input type="text" class="login-input" placeholder="请填写用户名" ng-model="user.tel">
+					<input type="text" class = "login-input" placeholder="请填写用户名" ng-model="user.username">
 				</div>
 			</div>
 			<!--密码-->
 			<div class="green-bottom-border" style="margin-top: 15%; vertical-align: middle">
 				<div style="margin: 0 auto;">
 					<i class="ion-android-lock login-icon"></i>
-					<input type="password" class="login-input" placeholder="请填写密码" ng-model="user.password">
+					<input type="password" class = "login-input" placeholder="请填写密码" ng-model="user.password">
 				</div>
 			</div>
-			<div id="loginError" style="height: 20px; color: red; margin-top: 7%" ng-show="loginError.flag"><li>{{loginError.info}}</li></div>
-			<!--登录按钮-->
-			<div class="center-middle" ng-style="{'margin-top': (loginError.flag?'8%':'15%')}">
+			<div class="center-middle" style="margin-top:15%">
 				<button class="button button-balanced" ng-click="login()">登录</button>
 			</div>
 			<!--注册通道-->

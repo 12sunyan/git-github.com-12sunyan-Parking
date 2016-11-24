@@ -1,4 +1,6 @@
 angular.module('parking').controller('MainCtrl', function ($cacheFactory,$location,$scope,$http,$state) {
-  $scope.user = $scope.currentUser;
-  //console.log($scope.currentUser.account.headURL);
+    var currentUser = localStorage['user'];
+    if(currentUser){
+      $scope.user = JSON.parse(currentUser);
+    }
 });

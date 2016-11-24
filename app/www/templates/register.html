@@ -8,39 +8,37 @@
   <ion-content class="padding">
     <img ng-src="img/user.png" style="width: 64px; height: 64px;margin-left:35px">
     <div style="margin-top: 12%; margin-right: auto; margin-left: auto; width: 80%">
-      <div class="green-bottom-border" style="margin-top: 15%; vertical-align: middle">
+      <div class="green-bottom-border" style="margin-top: 12%; vertical-align: middle">
         <div style="margin: 0 auto;">
           <i class="ion-android-person login-icon"></i>
-          <input type="text" class="login-input" placeholder="请填写用户名" ng-model="user.tel">
+          <input type="text" class="login-input" placeholder="请填写用户名" data-ng-model="user.username">
         </div>
       </div>
-      <div class="green-bottom-border" style="margin-top: 10%; vertical-align: middle">
+      <div class="green-bottom-border" style="margin-top: 7%; vertical-align: middle">
         <div style="margin: 0 auto;">
           <i class="ion-android-lock login-icon"></i>
-          <input type="password" class="login-input" placeholder="请填写密码" ng-model="user.password">
+          <input type="password" class="login-input" placeholder="请填写密码" data-ng-model="user.password">
         </div>
       </div>
-      <div class="green-bottom-border" style="margin-top: 10%; vertical-align: middle">
+      <div class="green-bottom-border" style="margin-top: 7%; vertical-align: middle">
         <div style="margin: 0 auto;">
           <i class="ion-android-car login-icon"></i>
-          <input type="text" class="login-input" placeholder="请填写汽车型号" ng-model="user.car">
+          <input type="text" class="login-input" placeholder="请填写汽车型号" data-ng-model="user.cartype">
         </div>
       </div>
-      <div class="green-bottom-border" style="margin-top: 10%; vertical-align: middle">
+      <div class="green-bottom-border" style="margin-top: 7%; vertical-align: middle">
         <div style="margin: 0 auto;">
           <i class="ion-android-car login-icon"></i>
-          <input type="text" class="login-input" placeholder="请填写车牌号" ng-model="user.car">
+          <input type="text" class="login-input" placeholder="请填写车牌号" data-ng-model="user.carid">
         </div>
       </div>
-      <div class="green-bottom-border" style="margin-top: 10%; vertical-align: middle">
+      <div class="green-bottom-border" style="margin-top: 7%; vertical-align: middle">
         <div style="margin: 0 auto;">
           <i class="ion-android-phone-portrait login-icon"></i>
-          <input type="text" class="login-input" placeholder="请填写手机号" ng-model="user.car">
+          <input type="text" class="login-input" placeholder="请填写手机号" data-ng-model="user.phone">
         </div>
       </div>
-      <div id="loginError" style="height: 20px; color: red; margin-top: 7%" ng-show="loginError.flag"><li>{{Registerrror.info}}</li></div>
-      <!--登录按钮-->
-      <div class="center-middle" ng-style="{'margin-top': (loginError.flag?'8%':'15%')}">
+      <div class="center-middle" style = "margin-top:12%">
         <button class="button button-balanced" ng-click="register()">注册</button>
       </div>
     </div>

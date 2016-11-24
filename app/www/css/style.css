@@ -13,3 +13,13 @@
 	min-height: 25px;
 	line-height: 25px;
 }
+.login-input {
+	font-size: 16px !important;
+	height: 40px !important;
+	width: 90%;
+	padding-left: 2% !important;
+	display: inline-block !important;
+}
+.green-bottom-border {
+	border-bottom: solid 1px #4AA53D !important;
+}

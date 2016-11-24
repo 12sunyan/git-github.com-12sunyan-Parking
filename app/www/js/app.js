@@ -6,6 +6,11 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('parking', ['ionic','ngCordova'])
+.constant('baseUrl', 'http://115.28.28.219:')
+
+.constant('port', '8080')
+
+.constant('entity','/Entity/U645b6e6328a4/SZLKD/')
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
