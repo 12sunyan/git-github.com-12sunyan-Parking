@@ -4,6 +4,18 @@
 angular.module('myParking', [
   'ngRoute'
 ])
+    .filter('unique', function() {
+        return function (arr, field) {
+            var o = {}, i, l = arr.length, r = [];
+            for(i=0; i<l;i+=1) {
+                o[arr[i][field]] = arr[i];
+            }
+            for(i in o) {
+                r.push(o[i]);
+            }
+            return r;
+        };
+    })
     .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
         $locationProvider.hashPrefix('!');
         $routeProvider
@@ -32,4 +44,5 @@ angular.module('myParking', [
                 controller: 'QRCtrl'
             })
         .otherwise({redirectTo: '/home'});
-}]);
+}])
+    .constant(baseUrl,'http://112.74.62.114:8080/mngResource.html?userid=405418042935964&project=Udb7fe87147e10/SZLKD');

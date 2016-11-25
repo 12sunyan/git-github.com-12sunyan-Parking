@@ -17,8 +17,14 @@ angular.module('myParking')
 .controller('SpaceCtrl',function () {
 
 })
-.controller('UserCtrl',function () {
+.controller('UserCtrl',function ($scope,$filter,$http) {
+    $scope.search = function(){
+        $scope.rowCollection = [];
 
+        var data = {
+
+        }
+    }
 })
 .controller('QRCtrl',function ($scope,$http) {
     $scope.getCodeImg = function () {
