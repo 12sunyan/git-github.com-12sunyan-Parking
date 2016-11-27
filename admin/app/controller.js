@@ -5,26 +5,92 @@
 'use strict';
 
 angular.module('myParking')
+    .filter("unique", function() {
+        return function (arr, field) {
+            var o = {}, i, l = arr.length, r = [];
+            for(i=0; i<l;i+=1) {
+                o[arr[i][field]] = arr[i];
+            }
+            for(i in o) {
+                r.push(o[i]);
+            }
+            return r;
+        };
+    })
 .controller('HomeCtrl',function () {
 
 })
 .controller('OrderCtrl',function () {
 
 })
-.controller('LotCtrl',function () {
+.controller('LotCtrl',function ($scope,$http,baiduUrl) {
+
+    //该函数获取指定经纬度的可读地址，跨域访问错
+    $scope.getAddr = function () {
+        if (!$scope.longitude || !$scope.latitude)
+            alert("经度和纬度需要指定");
+        else {
+            var reqAdd = {
+                method: 'GET',
+                url: baiduUrl + '&location=' + $scope.longitude + ',' + $scope.latitude
+                // header: 'Content-Type:text/javascript;charset=utf-8'
+            };
+            $http(reqAdd)
+                .success(function (data, config, status) {
+
+                    if (data.result.formatted_address) {
+                        $scope.address = data.result.formatted_address;
+                        // console.log($scope.rowCollection);
+                        alert('success!');
+                    }
+                    else {
+                        alert('error');
+                    }
+                }).error(function (res) {
+                alert('网络错误');
+            });
+        }
+    }
 
 })
 .controller('SpaceCtrl',function () {
 
+    // function initialize() {
+        var mp = new BMap.Map('map');
+        mp.centerAndZoom(new BMap.Point(121.491, 31.233), 11);
+    // }
+
+    // function loadScript() {
+    //     var script = document.createElement("script");
+    //     script.src = "http://api.map.baidu.com/api?v=2.0&ak=nhB87EF7jEp0diMOOTjHkXYyHQwGKojT&callback=initialize";//此为v2.0版本的引用方式
+    //     document.body.appendChild(script);
+    // }
+    //
+    // window.onload = loadScript;
+
+
 })
-.controller('UserCtrl',function ($scope,$filter,$http) {
+.controller('UserCtrl',function ($scope,$filter,$http,baseUrl) {
     $scope.search = function(){
         $scope.rowCollection = [];
-
-        var data = {
-
-        }
-    }
+        var reqAdd = {
+            method: 'GET',
+            url: baseUrl + '/User/'
+        };
+        $http(reqAdd)
+            .success(function (data, config, status) {
+                if (data.User) {
+                    $scope.rowCollection = data.User;
+                    console.log($scope.rowCollection);
+                    alert('success!');
+                }
+                else {
+                    alert('error');
+                }
+            }).error(function (res) {
+            alert('网络错误' );
+        });
+    };
 })
 .controller('QRCtrl',function ($scope,$http) {
     $scope.getCodeImg = function () {

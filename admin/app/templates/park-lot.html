@@ -1,3 +1,21 @@
 <div>
+
+
+
     <p>停车场新增、删除、修改、查询</p>
+
+    <p>输入中心获取图片</p>
+    <br>
+    <input ng-model="longitude" placeholder="请输入经度"/>
+    <input ng-model="latitude" placeholder="请输入纬度"/>
+    <br>
+    <!--<button ng-click="getAddr()">获取地址</button>-->
+    <!--<br>-->
+    <!--<div ng-model="address"></div>-->
+    <br>
+    <img ng-src="{{ {'uu':longitude, 'ii':latitude} |myImageUrl}}"  style="width:200px;height:200px">
+    <!--<img ng-show = 'imgShow' ng-src="{{ center |myImageUrl }}" style="width:200px;height:200px">-->
+    <br>
+
+    <!--<div ng-model="img"></div>-->
 </div>

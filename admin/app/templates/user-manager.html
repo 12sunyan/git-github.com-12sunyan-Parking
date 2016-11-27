@@ -1,5 +1,6 @@
 <div>
     <p>用户管理：用户增、删、改、查</p>
+    <button ng-click="search()">点击查询</button>
 
 <table st-table="rowCollection" class="table table-striped">
     <thead>
@@ -38,7 +39,7 @@
         <td>{{row.username}}</td>
         <td>{{row.phone}}</td>
         <td>{{row.carid}}</td>
-        <td>{{row.moeney | currency}}</td>
+        <td>{{row.money | currency}}</td>
     </tr>
     </tbody>
 </table>

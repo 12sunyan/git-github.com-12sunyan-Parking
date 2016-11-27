@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!--<meta http-equiv="Access-Control-Allow-Origin" content="*" />-->
   <title>My Parking</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,8 +12,13 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
   <link rel="stylesheet" href="app.css">
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+
+
+
 </head>
 <body>
+
+<!--<div id="map" style="width:500px;height:320px"></div>-->
 
   <div ng-view></div>
 
@@ -20,6 +26,15 @@
   <script type="text/javascript" src="jquery.qrcode.min.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
+
+  <!--使用smarttable插件-->
+  <!--<script src="node_modules/angular-smart-table/dist/smart-table.js"></script>-->
+
+  <!--载入百度地图-->
+  <script src="http://api.map.baidu.com/api?v=2.0&ak=nhB87EF7jEp0diMOOTjHkXYyHQwGKojT" type="text/javascript"></script>
+  <!--<script src="http://api.map.baidu.com/api?v=2.0&ak=nhB87EF7jEp0diMOOTjHkXYyHQwGKojT&callback=initMap"></script>-->
+  <!--<script type="text/javascript" src="../node_modules/angular-baidu-map/dist/angular-baidu-map.js"></script>-->
+  <!--<script type="text/javascript">var ngBaiduMap = window.ngBaiduMap;</script>-->
   <script src="app.js"></script>
   <script src="controller.js"></script>
 </body>
