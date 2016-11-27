@@ -1,29 +1,39 @@
-<!--<ion-view view-title="我要停车">
-  <ion-content class="padding">
+<ion-view view-title="我要停车">
     <h2>欢迎使用停车助手</h2>
-    <button class="button button-balanced" ng-click="getin()">我要停车</button>
-    <button class="button button-balanced" ng-click="search()">搜索附近</button>
-  </ion-content>
-</ion-view>-->
-<ion-view view-title="百度插件定位">
-  <ion-content class="padding">
-    <button class="button button-block button-positive icon-left "
-            ng-click="tirarFoto()">
-      获取地理定位
-    </button>
-   </br></br>
+    <!--<div class="center-middle" style = "margin-top:15%">
+      <button class="button button-balanced" ng-click="search()" >搜索附近</button>
+    </div>
+    <div class="center-middle" style = "margin-top:15%">
+      <button class="button button-balanced" ng-click="getin()">我要停车</button>
+    </div>
+    <div class="center-middle" style = "margin-top:15%">
+      <button class="button button-balanced" ng-click="leave()">我要离开</button>
+    </div>-->
+    <!--<ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" >
+        <a ng-click="search()"><h2>搜索附近</h2></a>
+      </ion-item>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" >
+        <a ng-click="getin()"><h2>我要停车</h2></a>
+      </ion-item>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" >
+        <a ng-click="leave()"><h2>我要离开</h2></a>
+      </ion-item>
+    </ion-list>-->
+    <div class="content has-header">
+      <ul class="list">
 
+        <li class="item">
+          <a ng-click="search()"><h2>搜索附近</h2></a>
+        </li>
+        <li class="item">
+          <a ng-click="getin()"><h2>我要停车</h2></a>
+        </li>
+        <li class="item">
+          <a ng-click="leave()"><h2>我要离开</h2></a>
+        </li>
 
-   <p>定位数据</p></br></br>
-   {{data}}
-   <p>数据2</p>
-   {{team}}</br></br>
-    <div id="allmap"></div>
-  <div id="r-result">
-    经度: <input id="longitude" type="text" style="width:100px; margin-right:10px;" />
-    纬度: <input id="latitude" type="text" style="width:100px; margin-right:10px;" />
-    <input type="button" value="查询" onclick="theLocation()" />
-  </div>
+      </ul>
+    </div>
 
-  </ion-content>
 </ion-view>

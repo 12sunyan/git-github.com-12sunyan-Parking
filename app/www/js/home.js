@@ -17,6 +17,11 @@ angular.module('parking')
                     alert("修改成功");
                 });  
             }
+            $scope.logout = function(){
+                delete localStorage['user'];
+                $scope.user = null;
+                $state.go('login');
+            }
             $scope.charge = function($event){
                 $event.stopPropagation();
                 $scope.data = {};

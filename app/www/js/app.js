@@ -6,11 +6,11 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('parking', ['ionic','ngCordova'])
-.constant('baseUrl', 'http://115.28.28.219:')
+.constant('baseUrl', 'http://112.74.62.114:')
 
 .constant('port', '8080')
 
-.constant('entity','/Entity/U645b6e6328a4/SZLKD/')
+.constant('entity','/Entity/Udb7fe87147e10/SZLKD/')
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -57,6 +57,25 @@ angular.module('parking', ['ionic','ngCordova'])
           templateUrl: 'templates/parking.html'
         }
       }
+  }).state('lotsearch', {
+    url: '/lotsearch',
+    controller: 'LotSearchCtrl',
+    templateUrl: 'templates/lotsearch.html'
+  }).state('enter', {
+    url: '/enter',
+    controller: 'EnterCtrl',
+    templateUrl: 'templates/enter.html',
+    params: {'data': 0},
+  }).state('navigate', {
+    url: '/navigate',
+    controller: 'NavigateCtrl',
+    templateUrl: 'templates/navigate.html',
+    params: {'longitude': 0, 'latitude':0},
+  }).state('leave', {
+    url: '/leave',
+    controller: 'LeaveCtrl',
+    templateUrl: 'templates/leave.html',
+    params: {'data': 0},
   }).state('login', {
       url: '/login',
       controller: 'LoginCtrl',

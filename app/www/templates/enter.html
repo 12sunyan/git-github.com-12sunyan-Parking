@@ -1,0 +1,13 @@
+<ion-view view-title="进入停车场">
+  <ion-nav-buttons side="left">  
+      <button class="button button-icon icon ion-ios-arrow-back" ng-click="returnback()"></button>  
+  </ion-nav-buttons> 
+  <ion-content class="padding">
+      <h2>{{parklot.name}}</h2>
+      <p>地址:&nbsp{{parklot.address}}</p>
+      <p>车位数:{{parklot.spacenum}}个</p>
+      <p>收费:&nbsp{{parklot.charge}}元/小时<p>
+      <p>车位:&nbsp{{parkspace.spaceid}}号车位<p>
+      <button class="button button-block button-positive icon-left " ng-click="confirm()">开始导航</button>
+  </ion-content>
+</ion-view>

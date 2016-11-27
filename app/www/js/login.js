@@ -26,5 +26,8 @@ angular.module('parking').controller('LoginCtrl', function ($location,$state, $s
       });
     }
   }
+  $scope.register = function(){
+    $state.go('register');
+  }
 
 });

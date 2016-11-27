@@ -1,0 +1,13 @@
+<ion-view view-title="离开停车场">
+  <ion-nav-buttons side="left">  
+      <button class="button button-icon icon ion-ios-arrow-back" ng-click="returnback()"></button>  
+  </ion-nav-buttons> 
+  <ion-content class="padding">
+      <h2>{{parkinglot.name}}</h2>
+      <p>车位:&nbsp{{parkspace.spaceid}}号车位<p>
+      <p>进入时间:{{parkrecord.entertime}}</p>
+      <p>离开时间:{{parkrecord.leavetime}}</p>
+      <p>总收费:&nbsp{{parkrecord.charge}}元<p>
+      <button class="button button-block button-positive icon-left " ng-click="confirm()">确认支付</button>
+  </ion-content>
+</ion-view>

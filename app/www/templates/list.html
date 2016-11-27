@@ -1,15 +1,11 @@
 <ion-view view-title="停车记录">
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
-        <img ng-src="{{chat.face}}">
-        <h2>{{chat.name}}</h2>
-        <p>{{chat.lastText}}</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
-          Delete
-        </ion-option-button>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="list in lists" type="item-text-wrap" >
+        <h2>{{list.parklot}}</h2>
+        <p>进入时间:{{list.entertime}}</p>
+        <p>离开时间:{{list.leavetime}}</p>
+        <p>收费:&nbsp&nbsp{{list.charge}}元</p>
       </ion-item>
     </ion-list>
   </ion-content>
