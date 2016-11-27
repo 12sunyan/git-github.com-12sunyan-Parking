@@ -1,0 +1,47 @@
+<div>
+    <p>用户管理：用户增、删、改、查</p>
+    <button ng-click="search()">点击查询</button>
+
+<table st-table="rowCollection" class="table table-striped">
+    <thead>
+    <tr>
+        <th st-sort = "cartype">车辆类型</th>
+        <th st-sort = "username">用户名</th>
+        <th st-sort =  "phone">手机</th>
+        <!--<th st-sort = "password">用户密码</th>-->
+        <th st-sort = "carid">车辆牌照</th>
+        <th st-sort = "moeny">余额</th>
+    </tr>
+    <tr>
+        <th>
+            <select st-search="cartype">
+                <option value="">All</option>
+                <option ng-repeat="row in rowCollection | unique:'cartype'" value="{{row.cartype}}">{{row.cartype}}</option>
+            </select>
+        </th>
+        <th >
+            <input st-search="username" placeholder="search for username" class="input-sm form-control" type="search"/>
+        </th>
+        <th >
+            <input st-search="phone" placeholder="search for phone" class="input-sm form-control" type="search"/>
+        </th>
+        <th >
+            <input st-search="carid" placeholder="search for carid" class="input-sm form-control" type="search"/>
+        </th>
+        <th colspan="3">
+            <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="row in rowCollection">
+        <td>{{row.cartype}}</td>
+        <td>{{row.username}}</td>
+        <td>{{row.phone}}</td>
+        <td>{{row.carid}}</td>
+        <td>{{row.money | currency}}</td>
+    </tr>
+    </tbody>
+</table>
+
+</div>
