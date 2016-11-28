@@ -19,5 +19,61 @@
 
     <div id="map" style="width:500px;height:320px"></div>
 
+
+    <div>
+        <p>停车位查询</p>
+        <button ng-click="search()">点击查询</button>
+
+        <table st-table="rowCollection" class="table table-striped">
+            <thead>
+            <tr>
+                <th st-sort = "parkid">停车场序号</th>
+                <th st-sort = "isfull">是否停车</th>
+                <th st-sort = "spaceid">停车位序号</th>
+                <th st-sort = "xpos">停车位行号</th>
+                <th st-sort =  "ypos">停车位列号</th>
+
+            </tr>
+            <tr>
+                <th>
+                    <select st-search="parkid">
+                        <option value="">All</option>
+                        <option ng-repeat="row in rowCollection | unique:'parkid'" value="{{row.parkid}}">{{row.parkid}}</option>
+                    </select>
+                </th>
+                <th>
+                    <select st-search="isfull">
+                        <option value="">All</option>
+                        <option ng-repeat="row in rowCollection | unique:'isfull'" value="{{row.isfull}}">{{row.isfull}}</option>
+                    </select>
+                </th>
+                <th >
+                    <input st-search="spaceid" placeholder="search for spaceid" class="input-sm form-control" type="search"/>
+                </th>
+                <th >
+                    <input st-search="xpos" placeholder="search for xpos" class="input-sm form-control" type="search"/>
+                </th>
+                <th >
+                    <input st-search="ypos" placeholder="search for ypos" class="input-sm form-control" type="search"/>
+                </th>
+                <th colspan="3">
+                    <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in rowCollection">
+                <td>{{row.parkid}}</td>
+                <td>{{row.isfull}}</td>
+                <td>{{row.spaceid}}</td>
+                <td>{{row.xpos}}</td>
+                <td>{{row.ypos}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
 </div>
 

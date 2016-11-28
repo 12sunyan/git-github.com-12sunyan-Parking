@@ -20,10 +20,30 @@ angular.module('myParking')
 .controller('HomeCtrl',function () {
 
 })
-.controller('OrderCtrl',function () {
+.controller('OrderCtrl',function ($scope,$http,$filter,baseUrl) {
+    $scope.search = function(){
+        $scope.rowCollection = [];
+        var reqAdd = {
+            method: 'GET',
+            url: baseUrl + '/Parkrecord/'
+        };
+        $http(reqAdd)
+            .success(function (data, config, status) {
+                if (data.Parkrecord) {
+                    $scope.rowCollection = data.Parkrecord;
+                    console.log($scope.rowCollection);
+                    alert('success!');
+                }
+                else {
+                    alert('error');
+                }
+            }).error(function (res) {
+            alert('网络错误' );
+        });
+    };
 
 })
-.controller('LotCtrl',function ($scope,$http,baiduUrl) {
+.controller('LotCtrl',function ($scope,$http,baiduUrl,$filter,baseUrl) {
 
     //该函数获取指定经纬度的可读地址，跨域访问错
     $scope.getAddr = function () {
@@ -50,14 +70,36 @@ angular.module('myParking')
                 alert('网络错误');
             });
         }
-    }
+    };
+
+    $scope.search = function(){
+        $scope.rowCollection = [];
+        var reqAdd = {
+            method: 'GET',
+            url: baseUrl + '/Parklot/'
+        };
+        $http(reqAdd)
+            .success(function (data, config, status) {
+                if (data.Parklot) {
+                    $scope.rowCollection = data.Parklot;
+                    console.log($scope.rowCollection);
+                    alert('success!');
+                }
+                else {
+                    alert('error');
+                }
+            }).error(function (res) {
+            alert('网络错误' );
+        });
+    };
+
 
 })
-.controller('SpaceCtrl',function () {
+.controller('SpaceCtrl',function ($scope,$filter,$http,baseUrl) {
 
     // function initialize() {
-        var mp = new BMap.Map('map');
-        mp.centerAndZoom(new BMap.Point(121.491, 31.233), 11);
+    //  1   var mp = new BMap.Map('map');
+    //  2   mp.centerAndZoom(new BMap.Point(121.491, 31.233), 11);
     // }
 
     // function loadScript() {
@@ -67,7 +109,26 @@ angular.module('myParking')
     // }
     //
     // window.onload = loadScript;
-
+    $scope.search = function(){
+        $scope.rowCollection = [];
+        var reqAdd = {
+            method: 'GET',
+            url: baseUrl + '/Parkspace/'
+        };
+        $http(reqAdd)
+            .success(function (data, config, status) {
+                if (data.Parkspace) {
+                    $scope.rowCollection = data.Parkspace;
+                    console.log($scope.rowCollection);
+                    alert('success!');
+                }
+                else {
+                    alert('error');
+                }
+            }).error(function (res) {
+            alert('网络错误' );
+        });
+    };
 
 })
 .controller('UserCtrl',function ($scope,$filter,$http,baseUrl) {

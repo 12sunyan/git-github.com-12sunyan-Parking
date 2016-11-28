@@ -1,3 +1,63 @@
 <div>
     <p>订单的新增、修改、删除、查询</p>
+
+    <div>
+        <p>停车记录查询</p>
+        <button ng-click="search()">点击查询</button>
+
+        <table st-table="rowCollection" class="table table-striped">
+            <thead>
+            <tr>
+                <th st-sort = "id">记录序号</th>
+                <th st-sort = "userid">用户id</th>
+                <th st-sort = "parkid">停车场序号</th>
+                <th st-sort = "parkspaceid">停车位序号</th>
+                <th st-sort = "charge">收费</th>
+                <th st-sort = "isleave">是否离开</th>
+                <th st-sort = "entertime">停入时间</th>
+                <th st-sort = "leavetime">离开时间</th>
+            </tr>
+            <tr>
+                <th>
+                    <select st-search="userid">
+                        <option value="">All</option>
+                        <option ng-repeat="row in rowCollection | unique:'userid'" value="{{row.userid}}">{{row.userid}}</option>
+                    </select>
+                </th>
+                <th>
+                    <select st-search="parkid">
+                        <option value="">All</option>
+                        <option ng-repeat="row in rowCollection | unique:'parkid'" value="{{row.parkid}}">{{row.parkid}}</option>
+                    </select>
+                </th>
+                <th >
+                    <input st-search="parkspaceid" placeholder="search for parkspaceid" class="input-sm form-control" type="search"/>
+                </th>
+                <th >
+                    <input st-search="isleave" placeholder="search for isleave" class="input-sm form-control" type="search"/>
+                </th>
+                <th >
+                    <input st-search="entertime" placeholder="search for entertime" class="input-sm form-control" type="search"/>
+                </th>
+                <th colspan="1">
+                    <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr ng-repeat="row in rowCollection">
+                <td>{{row.id}}</td>
+                <td>{{row.userid}}</td>
+                <td>{{row.parkid}}</td>
+                <td>{{row.parkspaceid}}</td>
+                <td>{{row.charge}}</td>
+                <td>{{row.isleave}}</td>
+                <td>{{row.entertime}}</td>
+                <td>{{row.leavetime}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
 </div>

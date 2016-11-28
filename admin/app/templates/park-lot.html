@@ -1,7 +1,5 @@
 <div>
 
-
-
     <p>停车场新增、删除、修改、查询</p>
 
     <p>输入中心获取图片</p>
@@ -18,4 +16,57 @@
     <br>
 
     <!--<div ng-model="img"></div>-->
+
+    <div>
+    <p>停车场查询</p>
+    <button ng-click="search()">点击查询</button>
+
+    <table st-table="rowCollection" class="table table-striped">
+        <thead>
+        <tr>
+            <th st-sort = "id">停车场ID</th>
+            <th st-sort = "name">名称</th>
+            <th st-sort = "spacenum">停车位个数</th>
+            <th st-sort = "xpos">停车位行数</th>
+            <th st-sort =  "ypos">停车位列数</th>
+            <th st-sort = "hourcharge">收费/小时</th>
+            <th st-sort = "address">地址</th>
+            <th st-sort = "longitude">经度</th>
+            <th st-sort = "latitude">纬度</th>
+
+        </tr>
+        <tr>
+            <th>
+                <select st-search="id">
+                    <option value="">All</option>
+                    <option ng-repeat="row in rowCollection | unique:'id'" value="{{row.parkid}}">{{row.id}}</option>
+                </select>
+            </th>
+            <th >
+                <input st-search="name" placeholder="search for name" class="input-sm form-control" type="search"/>
+            </th>
+            <th >
+                <input st-search="hourcharge" placeholder="search for hourcharge" class="input-sm form-control" type="search"/>
+            </th>
+            <th colspan="3">
+                <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in rowCollection">
+            <td>{{row.id}}</td>
+            <td>{{row.name}}</td>
+            <td>{{row.spacenum}}</td>
+            <td>{{row.xpos}}</td>
+            <td>{{row.ypos}}</td>
+            <td>{{row.hourcharge}}</td>
+            <td>{{row.address}}</td>
+            <td>{{row.longitude}}</td>
+            <td>{{row.latitude}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    </div>
 </div>
