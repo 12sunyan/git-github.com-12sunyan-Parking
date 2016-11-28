@@ -31,49 +31,29 @@ angular.module('parking').controller('EnterCtrl',function ($scope, $http, $state
 	    	}
 	    	var getspace = {
 			    method:'GET',
-			    url:baseUrl+port+entity+'Parkspace/?Parkspace.parkid='+$scope.parklot.id,
+			    url:baseUrl+port+entity+'Parkspace/?Parkspace.parkid='+$scope.parklot.id+'&Parkspace.isfull=0',
 			    headers: {'Content-Type': 'application/json'},
 			    crossDomain: true
 			};
 			$http(getspace).then(function(data){
 				console.log(data);
 				$scope.parkspaces = data.data.Parkspace;
-				$scope.parkspace = $scope.parkspaces[0];
+				var min = 10000;
+				if($scope.parkspaces){
+					$scope.parkspaces.forEach(function(space){
+						if(space.xpos+space.ypos < min){
+							$scope.parkspace = space;
+							min = space.xpos + space.ypos;
+						}
+					});
+				}
+				//$scope.parkspace = $scope.parkspaces[0];
 			})
 	    });
   	});
   	$scope.confirm = function(){
-  		var now = new Date();
-  		var mytime = now.toString();
-  		console.log(mytime);
-	  	var data = {
-	  		"entertime": mytime,
-	  		"userid":$scope.user.id,
-	  		"parkid":$scope.parklot.id,
-	  		"parkspaceid":$scope.parkspace.id,
-	  		"isleave":0
-	  	}
-	  	console.log(data);
-	  	var reqAdd = {
-	  	  method: 'POST',
-	      url: baseUrl+port+entity+'Parkrecord/',
-	      headers: {'Content-Type': 'application/json'},
-	      crossDomain: true,
-	      data: data
-	  	}
-	  	$http(reqAdd).then(function(res){
-	  		$scope.parkspace.isfull = 1;
-	  		var reqPUT = {
-		  	  method: 'PUT',
-		      url: baseUrl+port+entity+'Parkspace/'+$scope.parkspace.id,
-		      headers: {'Content-Type': 'application/json'},
-		      crossDomain: true,
-		      data: JSON.stringify($scope.parkspace)
-		  	}
-		  	$http(reqPUT).then(function(res2){
-		  	});
-	  	})
-  	}
+  		$state.go('spacenavi',{parkid:$scope.parklot.id,spaceid:$scope.parkspace.id});
+  	};
   	$scope.returnback = function(){
     	$state.go('main.parking');
     };

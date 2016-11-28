@@ -42,46 +42,45 @@ angular.module('parking').controller('LeaveCtrl',function ($scope, $http, $state
   	});
   	$scope.confirm = function(){
   		getcharge();
-	  	var reqAdd = {
-	  	  method: 'PUT',
-	      url: baseUrl+port+entity+'Parkrecord/'+$scope.parkrecord.id,
-	      headers: {'Content-Type': 'application/json'},
-	      crossDomain: true,
-	      data: JSON.stringify($scope.parkrecord)
-	  	}
-	  	$http(reqAdd).then(function(res){
-	  		$scope.parkspace.isfull = 0;
-	  		var reqPUT = {
+		if($scope.user.money < $scope.parkrecord.charge){
+  			alert("余额不足，请充值");		  			
+  		}
+  		else{
+		  	var reqAdd = {
 		  	  method: 'PUT',
-		      url: baseUrl+port+entity+'Parkspace/'+$scope.parkspace.id,
+		      url: baseUrl+port+entity+'Parkrecord/'+$scope.parkrecord.id,
 		      headers: {'Content-Type': 'application/json'},
 		      crossDomain: true,
-		      data: JSON.stringify($scope.parkspace)
+		      data: JSON.stringify($scope.parkrecord)
 		  	}
-		  	$http(reqPUT).then(function(res2){
-		  		if($scope.user.money < $scope.parkrecord.charge){
-		  			alert("余额不足，请充值");		  			
-		  		}
-		  		else{
+		  	$http(reqAdd).then(function(res){
+		  		$scope.parkspace.isfull = 0;
+		  		var reqPUT = {
+			  	  method: 'PUT',
+			      url: baseUrl+port+entity+'Parkspace/'+$scope.parkspace.id,
+			      headers: {'Content-Type': 'application/json'},
+			      crossDomain: true,
+			      data: JSON.stringify($scope.parkspace)
+			  	}
+			  	$http(reqPUT).then(function(res2){
 		  			$scope.user.money -= $scope.parkrecord.charge; 
 		  			var reqCharge = {
-                      method: 'PUT',
-                      url: baseUrl+port+entity+'user/'+$scope.user.id,
-                      headers: {'Content-Type': 'application/json'},
-                      crossDomain: true,
-                      data: JSON.stringify($scope.user)
-                    };
-                    $http(reqCharge).then(function(res){
-                        console.log(res);
-                        $scope.user = res.data;
-                        localStorage['user'] = JSON.stringify($scope.user);
-                        alert("支付成功");
-                        $state.go('main.parking');
-                    });	  			
-		  		}
-
-		  	});
-	  	})
+		              method: 'PUT',
+		              url: baseUrl+port+entity+'user/'+$scope.user.id,
+		              headers: {'Content-Type': 'application/json'},
+		              crossDomain: true,
+		              data: JSON.stringify($scope.user)
+		            };
+		            $http(reqCharge).then(function(res){
+		                console.log(res);
+		                $scope.user = res.data;
+		                localStorage['user'] = JSON.stringify($scope.user);
+		                alert("支付成功");
+		                $state.go('main.parking');
+		            });	  			
+			  	});
+		  	})
+  		}
   	}
   	$scope.returnback = function(){
     	$state.go('main.parking');
@@ -105,7 +104,7 @@ angular.module('parking').controller('LeaveCtrl',function ($scope, $http, $state
   				flag = 1;
   			}
   		}
-  		var alltime = ($scope.leavestr[2]-$scope.enterstr[2])*24 + $scope.leavetimestr[0]-$scope.entertimestr[0] + flag;
+  		var alltime = ($scope.leavestr[2]-$scope.enterstr[2])*24 + ($scope.leavetimestr[0]-$scope.entertimestr[0]) + flag;
   		console.log(alltime);
 	  	$scope.parkrecord.leavetime = mytime;
 	  	$scope.parkrecord.charge = alltime * $scope.parkinglot.hourcharge;

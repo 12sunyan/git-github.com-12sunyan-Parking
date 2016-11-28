@@ -28,7 +28,7 @@ angular.module('parking', ['ionic','ngCordova'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
   $stateProvider.state('main', {
       url: '/main',
       controller: 'MainCtrl',
@@ -61,6 +61,11 @@ angular.module('parking', ['ionic','ngCordova'])
     url: '/lotsearch',
     controller: 'LotSearchCtrl',
     templateUrl: 'templates/lotsearch.html'
+  }).state('spacenavi', {
+    url: '/spacenavi',
+    controller: 'SpaceCtrl',
+    templateUrl: 'templates/space.html',
+    params: {'parkid':0,'spaceid': 0},
   }).state('enter', {
     url: '/enter',
     controller: 'EnterCtrl',
@@ -87,5 +92,6 @@ angular.module('parking', ['ionic','ngCordova'])
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
-
+  $ionicConfigProvider.tabs.position("bottom");
+  $ionicConfigProvider.tabs.style("standard");  
 });

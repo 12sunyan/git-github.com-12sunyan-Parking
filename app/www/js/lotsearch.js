@@ -54,4 +54,7 @@ angular.module('parking').controller('LotSearchCtrl',function ($scope, $http, $s
     $scope.returnback = function(){
     	$state.go('main.parking');
     };
+    $scope.gospace = function(){
+    	$state.go('spacenavi');
+    };
 });
