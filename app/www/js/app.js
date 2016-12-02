@@ -65,7 +65,7 @@ angular.module('parking', ['ionic','ngCordova'])
     url: '/spacenavi',
     controller: 'SpaceCtrl',
     templateUrl: 'templates/space.html',
-    params: {'parkid':0,'spaceid': 0},
+    params: {'parkid':0,'spaceid': 0,'entryid':0},
   }).state('enter', {
     url: '/enter',
     controller: 'EnterCtrl',
