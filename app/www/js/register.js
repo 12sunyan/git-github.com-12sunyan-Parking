@@ -15,7 +15,7 @@ angular.module('parking').controller('RegisterCtrl', function ($location,$state,
     	alert("注册成功");
       $state.go('login');
     });
-  }
+  };
   $scope.returnback = function(){
     $state.go('login');
   }

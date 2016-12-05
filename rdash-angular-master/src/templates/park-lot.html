@@ -1,0 +1,114 @@
+<div class="col-xs-12">
+    <uib-alert  type="success" >停车场管理：包括停车场的增删改查</uib-alert>
+</div>
+
+<div class="row" ng-controller="LotCtrl">
+
+    <!--<br>-->
+    <!--<div ng-include="'templates/baiduMap.html'"></div>-->
+
+    <!--<div ng-show="false">-->
+    <!--<p>输入中心获取图片</p>-->
+    <!--<br>-->
+    <!--<input ng-model="longitude" placeholder="请输入经度121.443"/>-->
+    <!--<input ng-model="latitude" placeholder="请输入纬度31.032"/>-->
+    <!--<br>-->
+    <!--<img ng-src="{{ {'uu':longitude, 'ii':latitude} |myImageUrl}}"  style="width:200px;height:200px">-->
+    <!--<br>-->
+    <!--</div>-->
+
+
+    <div class="col-lg-12">
+        <rd-widget>
+            <rd-widget-header icon="fa-tasks" title="停车场查询">
+                <button class="btn btn-sm btn-info" ng-click="search()">查询</button>
+            </rd-widget-header>
+            <rd-widget-body classes="medium no-padding">
+                <div class="table-responsive">
+                    <table st-table="rowCollection" class="table">
+                            <thead>
+                            <tr>
+                                <th>
+                                    <select st-search="id">
+                                        <option value="">All</option>
+                                        <option ng-repeat="row in rowCollection | unique:'id'" value="{{row.parkid}}">{{row.id}}</option>
+                                    </select>
+                                </th>
+                                <th colspan="2">
+                                    <input st-search="hourcharge" placeholder="按小时收费查询" class="input-sm form-control" type="search"/>
+                                </th>
+                                <th colspan="6">
+                                    <input st-search placeholder="全局查询" class="input-sm form-control" type="search"/>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th st-sort = "id">停车场ID</th>
+                                <th st-sort = "name">名称</th>
+                                <th st-sort = "hourcharge">收费/小时</th>
+                                <th st-sort = "address">地址</th>
+                                <th st-sort = "longitude">经度</th>
+                                <th st-sort = "latitude">纬度</th>
+                                <th st-sort = "spacenum">停车位个数</th>
+                                <th st-sort = "xpos">停车位行数</th>
+                                <th st-sort =  "ypos">停车位列数</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="row in rowCollection">
+                                <td>{{row.id}}</td>
+                                <td>{{row.name}}</td>
+                                <td>{{row.hourcharge}}</td>
+                                <td>{{row.address}}</td>
+                                <td>{{row.longitude}}</td>
+                                <td>{{row.latitude}}</td>
+                                <td>{{row.spacenum}}</td>
+                                <td>{{row.xpos}}</td>
+                                <td>{{row.ypos}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                </div>
+            </rd-widget-body>
+    </div>
+
+    <div class="col-lg-6">
+        <rd-widget>
+            <rd-widget-header icon="fa-plus" title="停车场新增">
+                <a href="#/add">添加</a>
+                <!--<button class="btn btn-sm btn-info" ng-click="">添加</button>-->
+            </rd-widget-header>
+            <rd-widget-body classes="medium no-padding">
+                <div class="message" ng-controller="baiduMapCtrl">
+                    停车场的<a href="#/map">新增功能</a>
+                    <!--<span class="error">尚未实现!</span>-->
+                </div>
+            </rd-widget-body>
+        </rd-widget>
+    </div>
+
+    <div class="col-lg-6">
+        <rd-widget>
+            <rd-widget-header icon="fa-tasks" title="停车场修改">
+                <a href="#/modify">修改</a>
+                <!--<button class="btn btn-sm btn-info" ng-click="">修改</button>-->
+            </rd-widget-header>
+            <rd-widget-body classes="medium no-padding">
+                <div class="message">
+                    这部分提供对停车场的修改功能
+                    <!--<span class="error">尚未实现!</span>-->
+                </div>
+                <!--<div>-->
+                    <!--<p>输入中心获取图片</p>-->
+                    <!--<br>-->
+                    <!--<input ng-model="longitude" placeholder="请输入经度121.443"/>-->
+                    <!--<input ng-model="latitude" placeholder="请输入纬度31.032"/>-->
+                    <!--<br>-->
+                    <!--<img ng-src="{{ {'uu':longitude, 'ii':latitude} |myImageUrl}}"  style="width:20px;height:200px">-->
+                    <!--<br>-->
+                <!--</div>-->
+            </rd-widget-body>
+        </rd-widget>
+    </div>
+
+</div>
+

@@ -15,7 +15,7 @@ angular.module('parking')
                     $scope.user = res.data;
                     localStorage['user'] = JSON.stringify($scope.user);
                     alert("修改成功");
-                });  
+                });
             }
             $scope.logout = function(){
                 delete localStorage['user'];
@@ -30,7 +30,7 @@ angular.module('parking')
                     title: '请输入充值金额',
                     scope: $scope,
                     buttons: [
-                        { text: '取消' },
+                        { text: '取消'},
                         {
                             text: '<b>确定</b>',
                             type: 'button-positive',

@@ -21,6 +21,8 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Courgette"/>
+
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
@@ -28,7 +30,23 @@
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="lib/ionic/js/ng-cordova.min.js"></script>
-    <script src="http://api.map.baidu.com/api?v=2.0&ak=HumGuK48Lis3kPdlHZBxvbvsqgHySljX"></script>
+
+    <!--这个是llf的百度地图ak-->
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=nhB87EF7jEp0diMOOTjHkXYyHQwGKojT"></script>
+
+    <!--这个是显示进度的容器需要引用的js-->
+    <!--<script src="http://d3js.org/d3.v3.min.js"></script>-->
+    <!--<script src="lib/d3.js"></script>-->
+    <!--<script src="js/liquidFillGauge.js"></script>-->
+    <!--下面这个文件需要放在app.js以后-->
+    <!--<script src="js/directive.js"></script>-->
+
+    <!--这个是首页画图需要的css和js文件-->
+    <link href="css/d3-style.css" rel="stylesheet">
+    <script src="js/Epicyclic_Gearing.js"></script>
+
+    <!--这个是sunyan的百度地图ak-->
+    <!--<script src="http://api.map.baidu.com/api?v=2.0&ak=HumGuK48Lis3kPdlHZBxvbvsqgHySljX"></script>-->
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
@@ -51,8 +69,8 @@
     <!--
       The nav bar that will be updated as we navigate between views.
     -->
-    <ion-nav-bar class="bar-stable">
-      <ion-nav-back-button>
+    <ion-nav-bar class="bar-stable" align-title="center">
+      <ion-nav-back-button >
       </ion-nav-back-button>
     </ion-nav-bar>
     <!--
