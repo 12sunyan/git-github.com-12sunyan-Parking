@@ -45,7 +45,8 @@ angular.module('parking').controller('LeaveCtrl',function ($scope, $http, $state
 		if($scope.user.money < $scope.parkrecord.charge){
   			alert("余额不足，请充值");		  			
   		}
-  		else{
+  		else{  			
+  			console.log($scope.parkrecord);
 		  	var reqAdd = {
 		  	  method: 'PUT',
 		      url: baseUrl+port+entity+'Parkrecord/'+$scope.parkrecord.id,
