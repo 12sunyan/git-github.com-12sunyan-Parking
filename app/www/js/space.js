@@ -79,45 +79,48 @@ angular.module('parking').controller('SpaceCtrl',function ($scope, $http, $state
     });
     $scope.confirm = function(){
         $cordovaBarcodeScanner.scan().then(function(imageData) {
+            console.log($scope.spaceid);
             if(imageData.text!=$scope.spaceid){
+                console.log(imageData.text);
                 alert("请进入指定停车位");
-                return;
+            }
+            else{
+                var now = new Date();
+                var mytime = now.toString();
+                console.log(mytime);
+                var data = {
+                    "entertime": mytime,
+                    "userid":$scope.user.id,
+                    "parkid":$scope.parkid,
+                    "parkspaceid":$scope.spaceid,
+                    "isleave":0
+                }
+                console.log(data);
+                var reqAdd = {
+                  method: 'POST',
+                  url: baseUrl+port+entity+'Parkrecord/',
+                  headers: {'Content-Type': 'application/json'},
+                  crossDomain: true,
+                  data: data
+                }
+                $http(reqAdd).then(function(res){
+                    $scope.parkspace.isfull = 1;
+                    var reqPUT = {
+                      method: 'PUT',
+                      url: baseUrl+port+entity+'Parkspace/'+$scope.spaceid,
+                      headers: {'Content-Type': 'application/json'},
+                      crossDomain: true,
+                      data: JSON.stringify($scope.parkspace)
+                    }
+                    $http(reqPUT).then(function(res2){
+                        alert("停车成功");
+                        $state.go('main.parking');
+                    });
+                })
             }   
         }, function(error) {
             console.log("An error happened -> " + error);
             return;
         });        
-        var now = new Date();
-        var mytime = now.toString();
-        console.log(mytime);
-        var data = {
-            "entertime": mytime,
-            "userid":$scope.user.id,
-            "parkid":$scope.parkid,
-            "parkspaceid":$scope.spaceid,
-            "isleave":0
-        }
-        console.log(data);
-        var reqAdd = {
-          method: 'POST',
-          url: baseUrl+port+entity+'Parkrecord/',
-          headers: {'Content-Type': 'application/json'},
-          crossDomain: true,
-          data: data
-        }
-        $http(reqAdd).then(function(res){
-            $scope.parkspace.isfull = 1;
-            var reqPUT = {
-              method: 'PUT',
-              url: baseUrl+port+entity+'Parkspace/'+$scope.spaceid,
-              headers: {'Content-Type': 'application/json'},
-              crossDomain: true,
-              data: JSON.stringify($scope.parkspace)
-            }
-            $http(reqPUT).then(function(res2){
-                alert("停车成功");
-                $state.go('main.parking');
-            });
-        })
     }
 });

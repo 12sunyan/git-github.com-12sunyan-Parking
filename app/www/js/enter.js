@@ -12,7 +12,8 @@ angular.module('parking').controller('EnterCtrl',function ($scope, $http, $state
 	    crossDomain: true
   	};
   	$http(getres).then(function(res){
-	    if(res.data==null){
+  		console.log(res);
+	    if(res.data.id==null){
 	    	alert("停车场不存在");
 	    	$state.go('main.parking');
 	    }
