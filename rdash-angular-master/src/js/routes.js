@@ -38,10 +38,10 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
             .state('qrCode',{
                 url: '/qrCode',
                 templateUrl: 'templates/qrcode.html'
-            })
-            .state('map',{
-                url:'/map',
-                templateUrl: 'templates/baiduMap.html'
             });
+            // .state('map',{
+            //     url:'/map',
+            //     templateUrl: 'templates/baiduMap.html'
+            // });
     }
 ]);

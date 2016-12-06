@@ -78,9 +78,27 @@
                 <!--<button class="btn btn-sm btn-info" ng-click="">添加</button>-->
             </rd-widget-header>
             <rd-widget-body classes="medium no-padding">
-                <div class="message" ng-controller="baiduMapCtrl">
-                    停车场的<a href="#/map">新增功能</a>
+                <div class="message">
+                    停车场的<a href="#/map">新增功能</a><br>
                     <!--<span class="error">尚未实现!</span>-->
+
+                    <input ng-model="newlot.longitude" placeholder="经度">
+                    <input ng-model="newlot.latitude" placeholder="纬度">
+                    <input ng-model="newlot.address" placeholder="地址">
+                    <input ng-model="newlot.name" placeholder="名称">
+                    <input ng-model="newlot.spacenum" placeholder="停车位数目">
+                    <input ng-model="newlot.hourcharge" placeholder="每小时收费">
+                    <input ng-model="newlot.xpos" placeholder="行数">
+                    <input ng-model="newlot.ypos" placeholder="列数">
+                    <input ng-model="newlot.intro" placeholder="描述">
+
+
+                    <!--上传图片-->
+                    <input ngf-select type="file" ng-model="lotimg">
+                    <button  class="btn btn-sm btn-info" ng-click="addLotImg()" >创建</button>
+
+
+
                 </div>
             </rd-widget-body>
         </rd-widget>
