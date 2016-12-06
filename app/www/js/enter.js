@@ -1,4 +1,8 @@
-angular.module('parking').controller('EnterCtrl',function ($scope, $http, $state, $timeout,baseUrl, port, entity,$stateParams) {
+angular.module('parking').filter("image", function(baseUrl, port,fileurl){
+	return function(input){
+		return baseUrl + port + fileurl + '/Parklot/' + input;
+	}
+}).controller('EnterCtrl',function ($scope, $http, $state, $timeout,baseUrl, port, entity,$stateParams) {
 	$scope.parkid = $stateParams.data;
 	var currentUser = localStorage['user'];
     if(currentUser){

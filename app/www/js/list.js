@@ -1,4 +1,8 @@
-angular.module('parking').controller('ListCtrl', function ($cacheFactory,$location,$scope,$http,$state,baseUrl, port, entity) {
+angular.module('parking').filter("image", function(baseUrl, port,fileurl){
+	return function(input){
+		return baseUrl + port + fileurl + '/Parklot/' + input;
+	}
+}).controller('ListCtrl', function ($cacheFactory,$location,$scope,$http,$state,baseUrl, port, entity) {
   //$scope.user = $scope.currentUser;
 	var getrecord = {
 	    method:'GET',

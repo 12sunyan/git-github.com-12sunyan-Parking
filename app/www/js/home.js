@@ -47,21 +47,23 @@ angular.module('parking')
                 });
                 myPopup.then(function(res) {
                     console.log('Tapped!', res);
-                    $scope.user.money += res;
-                    var reqAdd = {
-                      method: 'PUT',
-                      url: baseUrl+port+entity+'user/'+$scope.user.id,
-                      headers: {'Content-Type': 'application/json'},
-                      crossDomain: true,
-                      data: JSON.stringify($scope.user)
-                    };
-                    $http(reqAdd).then(function(res){
-                        console.log(res);
-                        $scope.user = res.data;
-                        localStorage['user'] = JSON.stringify($scope.user);
-                        alert("充值成功");
-                        $state.reload();
-                    });
+                    if(res!=null){
+                        $scope.user.money += res;
+                        var reqAdd = {
+                          method: 'PUT',
+                          url: baseUrl+port+entity+'user/'+$scope.user.id,
+                          headers: {'Content-Type': 'application/json'},
+                          crossDomain: true,
+                          data: JSON.stringify($scope.user)
+                        };
+                        $http(reqAdd).then(function(res){
+                            console.log(res);
+                            $scope.user = res.data;
+                            localStorage['user'] = JSON.stringify($scope.user);
+                            alert("充值成功");
+                            $state.reload();
+                        });
+                    }
                 });
             }
         });

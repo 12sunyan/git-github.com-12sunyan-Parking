@@ -3,37 +3,16 @@
       <button class="button button-icon icon ion-ios-arrow-back" ng-click="returnback()"></button>
   </ion-nav-buttons>
   <ion-content class="padding">
-
+    <div id="hidemap"></div>
   <!--这部分是搜索完之后的显示-->
     <div class="list" ng-repeat="parking in parkings">
-      <a class="item item-thumbnail-left" href="#lotInfo">
-        <img src="img/parklot1.png">
+      <a class="item item-thumbnail-left" ui-sref="lotdetail({data:parking.id})">
+        <img ng-src="{{parking.id | image}}">
         <h2>{{parking.name}}</h2>
-        <p>距离:&nbsp{{parking.distance/1000}}公里</p>
+        <p>距离:&nbsp{{(parking.distance/1000).toFixed(2)}}公里</p>
         <p>空闲车位数:{{parking.spacenum}}个</p>
         <p>收费:&nbsp{{parking.hourcharge}}元/小时</p>
       </a>
-    </div>
-
-    <!--这部分是点击详情之后的显示-->
-    <div class="list card" ng-repeat="parking in parkings">
-      <div class="item item-avatar">
-        <img src="img/parklot1.png">
-        <h2>{{parking.name}}</h2>
-        <p>距离:&nbsp{{parking.distance/1000}}公里</p>
-      </div>
-
-      <div class="item item-body">
-        <img class="full-image" src="img/park.jpg">
-        <p>
-          点击进入具体某个停车场的详情:有停车场的描述，可以有多张图片、可以有用户的评价（暂未考虑加不加）。
-        </p>
-        <p>
-          <a href="#" class="subdued">车位数:{{parking.spacenum}}个</a>
-          <a href="#" class="subdued">收费:&nbsp{{parking.hourcharge}}元/小时</a>
-        </p>
-      </div>
-
     </div>
 
     <!--<div class="item-remove-animate item-avatar item-icon-right" ng-repeat="parking in parkings" type="item-text-wrap" >-->
@@ -43,11 +22,10 @@
       <!--<p>收费:&nbsp{{parking.hourcharge}}元/小时<p>-->
       <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
     <!--</div>-->
-    <img src="img/parkinglot.png">
+    <img ng-show = "click" src="img/parkinglot.png">
     <button class="button button-block button-positive icon-left "
             ng-click="tirarFoto()">
       获取地理定位
     </button>
-    <div id="hidemap"></div>
   </ion-content>
 </ion-view>

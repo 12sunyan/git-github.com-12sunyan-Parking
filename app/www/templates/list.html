@@ -1,7 +1,7 @@
 <ion-view view-title="停车记录">
   <ion-content>
 
-    <ion-list>
+    <!--<ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="list in lists" type="item-text-wrap" >
         <h2>{{list.parklot}}</h2>
         <div>
@@ -17,9 +17,24 @@
           <p style = "display:inline">收费:&nbsp&nbsp{{list.charge}}元</p>
         </div>
       </ion-item>
-    </ion-list>
+    </ion-list>-->
 
+    <div class="list card" ng-repeat="list in lists">
+      <div class="item item-body">
+        <img class="full-image" src="{{list.parkid | image}}">
+        <h2>{{list.parklot}}</h2>
+        <p>
+          <a class="subdued">进入时间:{{list.entertime.substr(0,24)}}</a>
+        </p>
+        <p>  
+          <a class="subdued">离开时间:{{list.leavetime.substr(0,24)}}</a>
+        </p>
+        <p> 
+          <a class="subdued">收费:&nbsp&nbsp{{list.charge}}元</a>
+        </p>
+      </div>
 
+    </div>
 
 
   </ion-content>

@@ -1,4 +1,8 @@
-angular.module('parking').controller('LotSearchCtrl',function ($scope, $http, $state, $timeout,$cordovaBarcodeScanner,baseUrl, port, entity) {
+angular.module('parking').filter("image", function(baseUrl, port,entity){
+	return function(input){
+		return baseUrl + port + fileurl + '/Parklot/' + input;
+	}
+}).controller('LotSearchCtrl',function ($scope, $http, $state, $timeout,$cordovaBarcodeScanner,baseUrl, port, entity) {
 	var currentUser = localStorage['user'];
     if(currentUser){
       $scope.user = JSON.parse(currentUser);
@@ -6,6 +10,7 @@ angular.module('parking').controller('LotSearchCtrl',function ($scope, $http, $s
   	function sortArray(a,b){
   		return a.distance-b.distance;
   	}
+  	$scope.click = 1;
 	function getdistance (point1,point2){
 		var map = new BMap.Map("hidemap");
 		var pointA = new BMap.Point(point1.longitude,point1.latitude); 
@@ -14,6 +19,7 @@ angular.module('parking').controller('LotSearchCtrl',function ($scope, $http, $s
 	} 
 
 	$scope.tirarFoto = function(){
+		$scope.click = 0;
 		var map = new BMap.Map("hidemap");
 		var point = new BMap.Point(116.331398,39.897445);
 		map.centerAndZoom(point,12);

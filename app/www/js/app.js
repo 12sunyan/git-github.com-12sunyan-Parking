@@ -12,6 +12,8 @@ angular.module('parking', ['ionic','ngCordova'])
 
 .constant('entity','/Entity/Udb7fe87147e10/SZLKD/')
 
+.constant('fileurl','/file/Udb7fe87147e10/SZLKD/')
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -30,10 +32,12 @@ angular.module('parking', ['ionic','ngCordova'])
 
 .config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
   $stateProvider.state('main', {
+      cache:false,
       url: '/main',
       controller: 'MainCtrl',
       templateUrl: 'templates/main.html',
   }).state('main.home', {
+      cache:false,
       url: '/home',
       views: {
       'home': {
@@ -58,15 +62,24 @@ angular.module('parking', ['ionic','ngCordova'])
         }
       }
   }).state('lotsearch', {
+    cache:false,
     url: '/lotsearch',
     controller: 'LotSearchCtrl',
     templateUrl: 'templates/lotsearch.html'
+  }).state('lotdetail', {
+    cache:false,
+    url: '/lotdetail',
+    controller: 'LotDetailCtrl',
+    templateUrl: 'templates/lotdetail.html',
+    params: {'data':0},
   }).state('spacenavi', {
+    cache:false,
     url: '/spacenavi',
     controller: 'SpaceCtrl',
     templateUrl: 'templates/space.html',
     params: {'parkid':0,'spaceid': 0,'entryid':0},
   }).state('enter', {
+    cache:false,
     url: '/enter',
     controller: 'EnterCtrl',
     templateUrl: 'templates/enter.html',
@@ -77,6 +90,7 @@ angular.module('parking', ['ionic','ngCordova'])
     templateUrl: 'templates/navigate.html',
     params: {'longitude': 0, 'latitude':0},
   }).state('leave', {
+    cache:false,
     url: '/leave',
     controller: 'LeaveCtrl',
     templateUrl: 'templates/leave.html',
