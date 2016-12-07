@@ -4,32 +4,24 @@
 angular.module('RDash')
     .controller('LotCtrl', ['$scope', '$cookieStore', LotCtrl]);
 
-function LotCtrl($scope) {
+function LotCtrl($scope,$state,$location) {
+    $scope.listshow = false;
+    $scope.listMessage = '显示';
 
-    var url = "http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/Parklot/1480060069588";
-    $scope.addLotImg = function () {
-        // console.log($scope.lotid);
-        // alert($scope.lotid);
-            var files = $(":file")[0].files;
-            var formData = new FormData();
-            formData.append("file", files[0]);
+    $scope.changeView = function(){
+        $scope.listshow = ! $scope.listshow;
+        if($scope.listshow ){
+            $scope.listMessage = '收起';
+        }
+        else{
+            $scope.listMessage = '显示';
+        }
 
-            console.log(url);
-            $.ajax({
-                url: url,
-                type: "POST",
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function (data) {
-                    alert('success!');
-                    console.log(data);
-                }
-            });
-        };
-
+    };
 
     $scope.search = function () {
+        $scope.listshow = true;
+        $scope.listMessage = '收起';
         // alert(baseUrl);
         $.ajax({
             // url: baseUrl +'/User/',
@@ -46,26 +38,27 @@ function LotCtrl($scope) {
         });
     };
 
-    $scope.pre_search = function(){
-        $scope.rowCollection = [];
-        var reqAdd = {
-            method: 'GET',
-            url: baseUrl + '/Parklot/'
-        };
-        $http(reqAdd)
-            .success(function (data, config, status) {
-                if (data.Parklot) {
-                    $scope.rowCollection = data.Parklot;
-                    console.log($scope.rowCollection);
+    $scope.deleteLot = function(row){
+        $.ajax({
+            url: 'http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/Parklot/'+ row.id,
+            method: 'DELETE',
+            async: false,
+            success: function (data) {
+                alert(' delete success');
+                if (data.message) {
+                    console.log(data);
                     alert('success!');
                 }
-                else {
-                    alert('error');
-                }
-            }).error(function (res) {
-            alert('网络错误' );
-        });
-    };
+            }
+        }).done(function () {
+            // $state.reload();
+            var index = $scope.rowCollection.indexOf(row);
+            if (index !== -1) {
+                $scope.rowCollection.splice(index, 1);
+            }
+          //刷新页面  window.location.reload();
+        })
+    }
 
 }
 

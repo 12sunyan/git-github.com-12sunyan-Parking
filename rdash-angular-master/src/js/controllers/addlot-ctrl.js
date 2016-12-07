@@ -2,16 +2,13 @@
  * Created by lulifei on 16/12/7.
  */
 angular.module('RDash')
-    .controller('AddLotCtrl' , ['$scope', '$cookieStore', AddLotCtrl]);
+    .controller('AddLotCtrl' , ['$scope','$state',AddLotCtrl]);
 
 
-function AddLotCtrl($scope, $state, $location) {
-    $scope.btnShow = true;
-    $scope.showMap = false;
-    $scope.formshow = false;
+function AddLotCtrl($scope, $state) {
+    myMap();
 
     $scope.create = function(){
-
         console.log('创建停车场：经度'+$scope.longi +',纬度'+$scope.lat);
         var data= {
             "longitude":$scope.longi,
@@ -40,22 +37,39 @@ function AddLotCtrl($scope, $state, $location) {
             success: function (data) {
                 if (data) {
                     console.log(data);
-                    alert('success!');
-                    $state.go('lot');
-                    // $location.path('/lot');
+                    alert('success!'+data.id);
+
                 }
             }
-        });
+        }).done(function (data) {
 
-    };
+                var url = "http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/Parklot/" + data.id;
+                console.log(url);
+                var files = $(":file")[0].files;
+                var formData = new FormData();
+                formData.append("file", files[0]);
+
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        alert('success!');
+                        console.log(data);
+                        $state.go('lot');
+                        // $state.go('lot',{});
+                        // window.location.href('park-lot.html');
+                        // $location.url('/lot');
+                    }
+                })
+            });
+        };
 
 
 
-    $scope.newMyMap = function () {
-        $scope.showMap = true;
-        $scope.btnShow = false;
-        myMap();
-    };
+
 
     // 百度地图API功能
     function myMap() {

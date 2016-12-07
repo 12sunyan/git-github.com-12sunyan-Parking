@@ -4,9 +4,15 @@
 
 angular
     .module('RDash')
-    .controller('AlertsCtrl', ['$scope',AlertsCtrl]);
+    .controller('AlertsCtrl', ['$scope','$state',AlertsCtrl]);
 
-function AlertsCtrl($scope) {
+function AlertsCtrl($scope,$state) {
+
+    $scope.test = function(){
+        alert('跳转页面');
+      $state.go('lot',{});
+    };
+
     $scope.alerts = [{
         type: 'success',
         msg: '欢迎登陆停车场管理系统!'

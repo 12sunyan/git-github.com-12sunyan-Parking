@@ -3,11 +3,12 @@
 </div>
 
 <div class="col-xs-12">
-<button ng-click="newMyMap()" ng-show="btnShow">显示地图</button>
-<div ng-show="showMap">
+<!--<button ng-click="newMyMap()" ng-show="btnShow">显示地图</button>-->
+<!--<div ng-show="showMap">-->
+    <div>
     <div id="allmap" style="height: 400px;width: 100%"></div><br>
     <form>
-        <p>添加停车场&nbsp;经度:{{longi}}, 纬度:{{lat}}。请填写以下信息</p>
+        <p>添加停车场&nbsp;经度{{longi}} 纬度{{lat}} 请填写以下信息</p>
         <input data-ng-model="newlot.address" placeholder="地址" style="width: 33%;">
         <input data-ng-model="newlot.name" placeholder="名称"  style="width: 33%;">
         <input data-ng-model="newlot.hourcharge" placeholder="每小时收费"  style="width: 33%;"><br>
@@ -15,6 +16,8 @@
         <input data-ng-model="newlot.xpos" placeholder="行数"  style="width: 33%;">
         <input data-ng-model="newlot.ypos" placeholder="列数"  style="width: 33%;"><br>
         <input data-ng-model="newlot.intro" placeholder="描述" style="width: 100%;"><br>
+
+        上传停车场图片：<input ngf-select type="file" ng-model="lotimg" />
         <button class="btn btn-sm btn-info" style="margin-left: 30%;width: 40%" ng-click="create()">创建停车场</button>
     </form>
     </div>
