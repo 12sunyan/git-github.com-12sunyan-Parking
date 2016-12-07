@@ -74,27 +74,22 @@
     <div class="col-lg-6">
         <rd-widget>
             <rd-widget-header icon="fa-plus" title="停车场新增">
-                <a href="#/add">添加</a>
+                <a href="#addlot">地图添加</a>
                 <!--<button class="btn btn-sm btn-info" ng-click="">添加</button>-->
             </rd-widget-header>
             <rd-widget-body classes="medium no-padding">
-                <div class="message">
-                    停车场的<a href="#/map">新增功能</a><br>
-                    <!--<span class="error">尚未实现!</span>-->
+                <div >
+                    <!--这段代码可以显示地图，但是太小了-->
+                    <!--<button ng-click="newMyMap()">显示地图</button>-->
+                    <!--<div ng-show="showMap">-->
+                        <!--<div id="allmap" style="height: 200px;width: 400px"></div>-->
+                    <!--</div>-->
 
-                    <input ng-model="newlot.longitude" placeholder="经度">
-                    <input ng-model="newlot.latitude" placeholder="纬度">
-                    <input ng-model="newlot.address" placeholder="地址">
-                    <input ng-model="newlot.name" placeholder="名称">
-                    <input ng-model="newlot.spacenum" placeholder="停车位数目">
-                    <input ng-model="newlot.hourcharge" placeholder="每小时收费">
-                    <input ng-model="newlot.xpos" placeholder="行数">
-                    <input ng-model="newlot.ypos" placeholder="列数">
-                    <input ng-model="newlot.intro" placeholder="描述">
-
-
+                    <p>上传停车场图片</p>
                     <!--上传图片-->
-                    <input ngf-select type="file" ng-model="lotimg">
+                    <!--<input type="number" ng-model="lotid" placeholder="请输入停车场id"/><br>-->
+
+                    <input ngf-select type="file" ng-model="lotimg" />
                     <button  class="btn btn-sm btn-info" ng-click="addLotImg()" >创建</button>
 
 
@@ -112,7 +107,7 @@
             </rd-widget-header>
             <rd-widget-body classes="medium no-padding">
                 <div class="message">
-                    这部分提供对停车场的修改功能
+                    这部分提供对停车场的修改、删除功能
                     <!--<span class="error">尚未实现!</span>-->
                 </div>
                 <!--<div>-->

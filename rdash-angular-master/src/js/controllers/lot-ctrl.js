@@ -5,31 +5,18 @@ angular.module('RDash')
     .controller('LotCtrl', ['$scope', '$cookieStore', LotCtrl]);
 
 function LotCtrl($scope) {
-    $$scope.create = function(){
-        $.ajax({
-            // url: baseUrl +'/User/',
-            url: 'http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/Parklot/',
-            method: 'POST',
-            data: $scope.newlot,
-            contentType: "application/json",
-            async: false,
-            success: function (data) {
-                if (data.Parklot) {
-                    $scope.rowCollection = data.Parklot;
-                    console.log($scope.rowCollection);
-                    alert('success!');
-                }
-            }
-        });
 
-    };
-
+    var url = "http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/Parklot/1480060069588";
     $scope.addLotImg = function () {
+        // console.log($scope.lotid);
+        // alert($scope.lotid);
             var files = $(":file")[0].files;
             var formData = new FormData();
             formData.append("file", files[0]);
+
+            console.log(url);
             $.ajax({
-                url: "http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/Parklot/1480060069588",
+                url: url,
                 type: "POST",
                 data: formData,
                 contentType: false,

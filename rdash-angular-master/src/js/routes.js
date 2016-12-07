@@ -25,6 +25,7 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
             })
             .state('lot',{
                 url: '/lot',
+                controller: 'LotCtrl',
                 templateUrl: 'templates/park-lot.html'
             })
             .state('space',{
@@ -38,10 +39,11 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
             .state('qrCode',{
                 url: '/qrCode',
                 templateUrl: 'templates/qrcode.html'
+            })
+            .state('addlot',{
+                url:'/addlot',
+                controller: 'AddLotCtrl',
+                templateUrl: 'templates/addlot.html'
             });
-            // .state('map',{
-            //     url:'/map',
-            //     templateUrl: 'templates/baiduMap.html'
-            // });
     }
 ]);
