@@ -21,7 +21,8 @@ angular.module('parking').controller('LoginCtrl', function ($location,$state, $s
           console.log($scope.currentUser);
           //coverAuth.setCurrentUser($scope.currentUser);
           localStorage['user'] = JSON.stringify($scope.currentUser);
-          $state.go('main.home');
+          // $state.go('main.home');
+          $state.go('main.parking');
         }
       });
     }
