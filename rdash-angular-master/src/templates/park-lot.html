@@ -2,21 +2,6 @@
     <uib-alert  type="success" >停车场管理：包括停车场的增删改查</uib-alert>
 </div>
 
-<!--<div class="row" ng-controller="LotCtrl">-->
-    <!--<br>-->
-    <!--<div ng-include="'templates/baiduMap.html'"></div>-->
-
-    <!--<div ng-show="false">-->
-    <!--<p>输入中心获取图片</p>-->
-    <!--<br>-->
-    <!--<input ng-model="longitude" placeholder="请输入经度121.443"/>-->
-    <!--<input ng-model="latitude" placeholder="请输入纬度31.032"/>-->
-    <!--<br>-->
-    <!--<img ng-src="{{ {'uu':longitude, 'ii':latitude} |myImageUrl}}"  style="width:200px;height:200px">-->
-    <!--&lt;!&ndash;<br>&ndash;&gt;class="col-lg-12"-->
-    <!--</div>-->
-
-
     <div class="col-xs-12">
         <rd-widget >
             <rd-widget-header icon="fa-tasks" title="停车场查询">
@@ -52,6 +37,10 @@
                                 <th st-sort = "spacenum">停车位个数</th>
                                 <th st-sort = "xpos">停车位行数</th>
                                 <th st-sort =  "ypos">停车位列数</th>
+                                <th>生成二维码</th>
+                                <th>添加入口</th>
+                                <th>添加停车位</th>
+
                                 <th>删除</th>
                             </tr>
                             </thead>
@@ -66,7 +55,12 @@
                                 <td>{{row.spacenum}}</td>
                                 <td>{{row.xpos}}</td>
                                 <td>{{row.ypos}}</td>
-                                <td><button ng-click="deleteLot(row)"></button></td>
+                                <td> <button ng-click="lotCode(row)"></button></td>
+                                <td> <button ng-click="createEntry(row)"></button></td>
+                                <td><button ng-click="manage(row)">管理</button> </td>
+
+                                <td><span tooltip="删除停车场!" class="text-danger" ng-click="deleteLot(row)"><i class="fa fa-warning"></i></span></td>
+
                             </tr>
                             </tbody>
                         </table>

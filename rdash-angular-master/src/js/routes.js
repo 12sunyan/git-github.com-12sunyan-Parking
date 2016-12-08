@@ -30,7 +30,9 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
             })
             .state('space',{
                 url: '/space',
-                templateUrl: 'templates/park-space.html'
+                controller: 'SpaceCtrl',
+                templateUrl: 'templates/park-space.html',
+                params: {'id':0,'num':0,'x':0,'y':0}
             })
             .state('order',{
                 url: '/order',
@@ -38,12 +40,20 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
             })
             .state('qrCode',{
                 url: '/qrCode',
-                templateUrl: 'templates/qrcode.html'
+                controller: 'QRCtrl',
+                templateUrl: 'templates/qrcode.html',
+                params: {'id':0}
             })
             .state('addlot',{
                 url:'/addlot',
                 controller: 'AddLotCtrl',
                 templateUrl: 'templates/addlot.html'
+            })
+            .state('entry',{
+                url:'/entry',
+                controller: 'EntryCtrl',
+                templateUrl: 'templates/park-entry.html',
+                params:{'id':0}
             });
     }
 ]);

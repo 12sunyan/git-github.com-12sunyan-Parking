@@ -1,0 +1,69 @@
+<div class="col-xs-12">
+    <uib-alert  type="success" >停车场管理：包括停车场的增删改查</uib-alert>
+</div>
+
+<div class="col-xs-12">
+    <rd-widget >
+        <rd-widget-header icon="fa-tasks" title="停车入口查询">
+            <button class="btn btn-sm btn-info" style="width: 20%" ng-click="search()">查询</button>
+        </rd-widget-header>
+        <!--<rd-widget-body classes="medium no-padding">-->
+        <div class="table-responsive">
+            <table st-table="rowCollection" class="table">
+                <thead>
+                <tr>
+                    <th>
+                        <select st-search="id">
+                            <option value="">All</option>
+                            <option ng-repeat="row in rowCollection | unique:'id'" value="{{row.parkid}}">{{row.id}}</option>
+                        </select>
+                    </th>
+                    <th colspan="2">
+                        <input st-search="hourcharge" placeholder="按小时收费查询" class="input-sm form-control" type="search"/>
+                    </th>
+                    <th colspan="7">
+                        <input st-search placeholder="全局查询" class="input-sm form-control" type="search"/>
+                    </th>
+                </tr>
+                <tr>
+                    <th st-sort = "parkid">停车场ID</th>
+                    <th st-sort = "id">停车场入口ID</th>
+                    <th st-sort = "x">行坐标</th>
+                    <th st-sort =  "y">列坐标</th>
+                    <th>生成二维码</th>
+
+                    <th>删除</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in rowCollection">
+                    <td>{{row.parkid}}</td>
+                    <td>{{row.id}}</td>
+                    <td>{{row.x}}</td>
+                    <td>{{row.y}}</td>
+                    <td> <button ng-click="entryCode(row)"></button></td>
+
+                    <td><span tooltip="删除停车场入口!" class="text-danger" ng-click="deleteEntry(row)"><i class="fa fa-warning"></i></span></td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--</rd-widget-body>-->
+    </rd-widget>
+</div>
+
+<div class="col-xs-12" ng-controller="EntryCtrl">
+    <rd-widget >
+        <rd-widget-header icon="fa-tasks" title="停车入口查询">
+        </rd-widget-header>
+        <rd-widget-body>
+            <p>新建入口</p>
+            <input type="number" data-ng-model="entryx" placeholder="请输入行坐标"/>
+            <input type="number" data-ng-model="entryy" placeholder="请输入列坐标"/>
+            <br>
+            <button ng-click="createEntry()">创建</button>
+        </rd-widget-body>
+    </rd-widget>
+
+</div>

@@ -3,16 +3,23 @@
  */
 
 angular.module('RDash')
-    .controller('QRCtrl', ['$scope', '$cookieStore',QRCtrl]);
+    .controller('QRCtrl', ['$scope','$stateParams',QRCtrl]);
 
-function QRCtrl($scope) {
-    $scope.getCodeImg = function () {
-        if ($scope.myCode) {
-            //二维码生成可以采用jQuery插件直接生成，中间加入字符串就行
-            jQuery('#qrcode').qrcode($scope.myCode);
-            console.log($scope.myCode);
-        }
-        else
-            alert("输入不能为空");
+
+
+function QRCtrl($scope,$stateParams) {
+
+    var id = $stateParams.id;
+    console.log(id);
+
+
+    $scope.init = function () {
+
+        var qrcode = new QRCode(document.getElementById("qrcode"));
+        qrcode.makeCode(id.toString());
     };
+
 }
+
+
+

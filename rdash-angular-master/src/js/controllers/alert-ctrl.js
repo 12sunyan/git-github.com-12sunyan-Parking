@@ -10,7 +10,7 @@ function AlertsCtrl($scope,$state) {
 
     $scope.test = function(){
         alert('跳转页面');
-      $state.go('lot',{});
+      $state.go('lot');
     };
 
     $scope.alerts = [{

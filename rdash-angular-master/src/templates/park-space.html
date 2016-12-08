@@ -2,14 +2,23 @@
     <uib-alert  type="success" >停车位管理：包括停车位的增删改查</uib-alert>
 </div>
 
-<div class="row"  ng-controller="SpaceCtrl">
+    <div class="col-lg-12">
+        <rd-widget>
+            <rd-widget-header icon="fa-plus" title="停车位新增">
+                <a ng-click="createSpace()">添加</a>
+                <!--<button class="btn btn-sm btn-info" ng-click="">添加</button>-->
+            </rd-widget-header>
+        </rd-widget>
+    </div>
+
     <div class="col-lg-12">
     <rd-widget>
         <rd-widget-header icon="fa-tasks" title="停车位查询">
             <button class="btn btn-sm btn-info" ng-click="search()">查询</button>
+            <button class="btn btn-sm btn-info" style="width:20%;margin-left: 30%;background-color: #d9edf7;border-color: #d9edf7" ng-click="changeView()">{{listMessage}}</button>
         </rd-widget-header>
-        <rd-widget-body classes="medium no-padding">
-            <div class="table-responsive">
+        <!--<rd-widget-body classes="medium no-padding">-->
+            <div class="table-responsive" ng-show="listshow">
                 <table st-table="rowCollection" class="table">
                         <thead>
                         <tr>
@@ -44,9 +53,10 @@
                         <tr>
                             <th st-sort = "isfull">是否停车</th>
                             <th st-sort = "parkid">停车场序号</th>
-                            <th st-sort = "spaceid">停车位序号</th>
+                            <th st-sort = "id">停车位序号</th>
                             <th st-sort = "xpos">x</th>
                             <th st-sort =  "ypos">y</th>
+                            <th>生成二维码</th>
 
                         </tr>
                         </thead>
@@ -54,45 +64,20 @@
                         <tr ng-repeat="row in rowCollection">
                             <td>{{row.isfull}}</td>
                             <td>{{row.parkid}}</td>
-                            <td>{{row.spaceid}}</td>
+                            <td>{{row.id}}</td>
                             <td>{{row.xpos}}</td>
                             <td>{{row.ypos}}</td>
+                            <td><button ng-click="spaceqrCode(row)"></button></td>
                         </tr>
                         </tbody>
                     </table>
             </div>
-        </rd-widget-body>
+        <!--</rd-widget-body>-->
+    </rd-widget>
     </div>
 
-<div class="col-lg-6">
-    <rd-widget>
-        <rd-widget-header icon="fa-plus" title="停车位新增">
-            <a href="#/add">添加</a>
-            <!--<button class="btn btn-sm btn-info" ng-click="">添加</button>-->
-        </rd-widget-header>
-        <rd-widget-body classes="medium no-padding">
-            <div class="message">
-                这部分提供对停车位的新增功能
-                <!--<span class="error">尚未实现!</span>-->
-            </div>
-        </rd-widget-body>
-    </rd-widget>
-</div>
 
-<div class="col-lg-6">
-    <rd-widget>
-        <rd-widget-header icon="fa-tasks" title="停车位修改">
-            <a href="#/modify">修改</a>
-            <!--<button class="btn btn-sm btn-info" ng-click="">修改</button>-->
-        </rd-widget-header>
-        <rd-widget-body classes="medium no-padding">
-            <div class="message">
-                这部分提供对停车位的修改功能
-                <!--<span class="error">尚未实现!</span>-->
-            </div>
-        </rd-widget-body>
-
-    </rd-widget>
+    <div id="qrcode" ng-show="codeShow"></div>
 </div>
 </div>
 
