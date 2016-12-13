@@ -4,9 +4,26 @@
 angular.module('RDash')
     .controller('LotCtrl', ['$scope','$state', LotCtrl]);
 
-function LotCtrl($scope,$state,$location) {
-    $scope.listshow = false;
-    $scope.listMessage = '显示';
+function LotCtrl($scope,$state) {
+    // $scope.listshow = false;
+    // $scope.listMessage = '显示';
+
+    $scope.listshow = true;
+    $scope.listMessage = '收起';
+
+    $.ajax({
+        // url: baseUrl +'/User/',
+        url: 'http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/Parklot/',
+        method: 'GET',
+        async: false,
+        success: function (data) {
+            if (data.Parklot) {
+                $scope.rowCollection = data.Parklot;
+                console.log($scope.rowCollection);
+                // alert('success!');
+            }
+        }
+    });
 
     $scope.changeView = function () {
         $scope.listshow = !$scope.listshow;
@@ -18,6 +35,12 @@ function LotCtrl($scope,$state,$location) {
         }
 
     };
+
+    $scope.editLot =function(row){
+        console.log(row.id);
+        $state.go('editLot',{id:row.id});
+    }
+
 
     $scope.lotCode = function (row) {
         console.log(row.id);

@@ -14,28 +14,72 @@ function UserCtrl($scope,baseUrl) {
     };
     // var baseUrl = 'http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD';
     //can't identify http as a function
-    $scope.searchUser = function() {
-        $scope.rowCollection = [];
-        var reqAdd = {
-            method: 'GET',
-            url: baseUrl+ '/User/'
-        };
-        $http(reqAdd)
-            .success(function (data, config, status) {
-                if (data.User) {
-                    $scope.rowCollection = data.User;
-                    console.log($scope.rowCollection);
-                    alert('success!');
-                }
-                else {
-                    alert('error');
-                }
-            }).error(function (res) {
-            alert('网络错误');
-        });
+
+    $scope.listshow = true;
+    $scope.listMessage = '收起';
+
+
+    $.ajax({
+        // url: baseUrl +'/User/',
+        url: 'http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/User/',
+        method: 'GET',
+        async: false,
+        success: function (data) {
+            if (data.User) {
+                $scope.rowCollection = data.User;
+                console.log($scope.rowCollection);
+                // alert('success!');
+            }
+        }
+    });
+
+
+
+    $scope.changeView = function () {
+        $scope.listshow = !$scope.listshow;
+        if ($scope.listshow) {
+            $scope.listMessage = '收起';
+        }
+        else {
+            $scope.listMessage = '显示';
+        }
+
     };
 
-    $scope.searchTest = function () {
+
+    $scope.deleteUser = function (row) {
+
+        var txt;
+        var r = confirm("确认删除？");
+        if (r == true) {
+            console.log('delete');
+
+            $.ajax({
+                url: 'http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/User/' + row.id,
+                method: 'DELETE',
+                async: false,
+                success: function (data) {
+                    alert(' delete success');
+                    if (data.message) {
+                        console.log(data);
+                        alert('success!');
+                    }
+                }
+            }).done(function () {
+                // $state.reload();
+                var index = $scope.rowCollection.indexOf(row);
+                if (index !== -1) {
+                    $scope.rowCollection.splice(index, 1);
+                }
+                //刷新页面  window.location.reload();
+            })
+        }
+        else {
+            console.log('cancel');
+        }
+    };
+
+    $scope.search = function () {
         // alert(baseUrl);
         $.ajax({
             // url: baseUrl +'/User/',

@@ -12,40 +12,25 @@ function EntryCtrl($scope,$state,$stateParams) {
 
     $scope.parkid = $stateParams.id;
     console.log($scope.parkid);
-    console.log($scope.entryx);
-    console.log($scope.entryy);
 
-    $scope.createEntry = function () {
-        alert('enter entry create function');
-        if( !$scope.entryx || !$scope.entryy) {
-            alert('输入数据不能为空');
+    $.ajax({
+        // url: baseUrl +'/User/',
+        url: 'http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/Parkentry/?Parkentry.parkid='+ $scope.parkid,
+        method: 'GET',
+        async: false,
+        success: function (data) {
+            if (data.Parkentry) {
+                $scope.rowCollection = data.Parkentry;
+                console.log($scope.rowCollection);
+            }
         }
-        else {
-            var data = {
-                "parkid": $scope.parkid,
-                "x": $scope.entryx,
-                "y": $scope.entryy
+    });
 
-                // "x": parseInt($scope.newentry.x),
-                // "y": parseInt($scope.newentry.y)
-            };
-            console.log(data);
-            $.ajax({
-                // url: baseUrl +'/User/',
-                url: 'http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/Parkentry/',
-                method: 'POST',
-                async: false,
-                data: JSON.stringify(data),
-                // headers: {'Content-Type': 'application/json'},
-                contentType: 'application/json',
-                success: function (data) {
-                    if (data) {
-                        console.log(data);
-                        alert('create entry success!');
-                    }
-                }
-            });
-        }
+
+
+    $scope.goToAdd = function(){
+        console.log($scope.parkid);
+        $state.go('addEntry',{id:$scope.parkid});
     };
 
 

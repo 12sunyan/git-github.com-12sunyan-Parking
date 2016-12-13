@@ -26,13 +26,15 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
             .state('lot',{
                 url: '/lot',
                 controller: 'LotCtrl',
-                templateUrl: 'templates/park-lot.html'
+                templateUrl: 'templates/park-lot.html',
+                cache:false //每次回到这个页面时自动强制刷新
             })
             .state('space',{
                 url: '/space',
                 controller: 'SpaceCtrl',
                 templateUrl: 'templates/park-space.html',
-                params: {'id':0,'num':0,'x':0,'y':0}
+                params: {'id':0,'num':0,'x':0,'y':0},
+                cache:false //每次回到这个页面时自动强制刷新
             })
             .state('order',{
                 url: '/order',
@@ -53,6 +55,19 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
                 url:'/entry',
                 controller: 'EntryCtrl',
                 templateUrl: 'templates/park-entry.html',
+                params:{'id':0},
+                cache:false //每次回到这个页面时自动强制刷新
+            })
+            .state('addEntry',{
+                url: '/addEntry',
+                controller: 'AddEntryCtrl',
+                templateUrl: 'templates/addentry.html',
+                params:{'id':0}
+            })
+            .state('editLot',{
+                url: '/editLot',
+                controller: 'EditLotCtrl',
+                templateUrl: 'templates/editlot.html',
                 params:{'id':0}
             });
     }

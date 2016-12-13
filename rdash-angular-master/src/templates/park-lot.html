@@ -32,15 +32,16 @@
                                 <th st-sort = "name">名称</th>
                                 <th st-sort = "hourcharge">收费/小时</th>
                                 <th st-sort = "address">地址</th>
-                                <th st-sort = "longitude">经度</th>
-                                <th st-sort = "latitude">纬度</th>
+                                <!--<th st-sort = "longitude">经度</th>-->
+                                <!--<th st-sort = "latitude">纬度</th>-->
                                 <th st-sort = "spacenum">停车位个数</th>
                                 <th st-sort = "xpos">停车位行数</th>
                                 <th st-sort =  "ypos">停车位列数</th>
-                                <th>生成二维码</th>
-                                <th>添加入口</th>
-                                <th>添加停车位</th>
 
+                                <th>管理入口</th>
+                                <th>管理停车位</th>
+                                <th>生成二维码</th>
+                                <th>编辑</th>
                                 <th>删除</th>
                             </tr>
                             </thead>
@@ -50,15 +51,16 @@
                                 <td>{{row.name}}</td>
                                 <td>{{row.hourcharge}}</td>
                                 <td>{{row.address}}</td>
-                                <td>{{row.longitude}}</td>
-                                <td>{{row.latitude}}</td>
+                                <!--<td>{{row.longitude}}</td>-->
+                                <!--<td>{{row.latitude}}</td>-->
                                 <td>{{row.spacenum}}</td>
                                 <td>{{row.xpos}}</td>
                                 <td>{{row.ypos}}</td>
-                                <td> <button ng-click="lotCode(row)"></button></td>
-                                <td> <button ng-click="createEntry(row)"></button></td>
-                                <td><button ng-click="manage(row)">管理</button> </td>
 
+                                <td> <button ng-click="createEntry(row)"></button></td>
+                                <td><button ng-click="manage(row)"></button> </td>
+                                <td> <button ng-click="lotCode(row)"></button></td>
+                                <td><button ng-click="editLot(row)"></button></td>
                                 <td><span tooltip="删除停车场!" class="text-danger" ng-click="deleteLot(row)"><i class="fa fa-warning"></i></span></td>
 
                             </tr>
@@ -72,7 +74,7 @@
     <div class="col-lg-12">
         <rd-widget>
             <rd-widget-header icon="fa-plus" title="停车场新增">
-                <a href="#addlot" style="margin-left: 5%">添加</a>
+                <a href="#addLot" style="margin-left: 5%">添加</a>
                 <!--<button class="btn btn-sm btn-info" ng-click="">添加</button>-->
             </rd-widget-header>
             <!--<rd-widget-body classes="medium no-padding">-->
@@ -92,7 +94,7 @@
     <div class="col-lg-12">
         <rd-widget>
             <rd-widget-header icon="fa-tasks" title="停车场修改">
-                <a href="#/modify" style="margin-left: 5%">修改</a>
+                <a href="#editLot" style="margin-left: 5%">修改</a>
                 <!--<button class="btn btn-sm btn-info" ng-click="">修改</button>-->
             </rd-widget-header>
             <!--<rd-widget-body classes="medium no-padding">-->

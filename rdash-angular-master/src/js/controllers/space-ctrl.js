@@ -12,9 +12,24 @@ function SpaceCtrl($scope,$state,$stateParams) {
     $scope.xnum = $stateParams.x;
     $scope.ynum = $stateParams.y;
 
-    $scope.codeShow = false;
-    $scope.listshow = false;
-    $scope.listMessage = '显示';
+    $scope.listshow = true;
+    $scope.listMessage = '收起';
+    // alert(baseUrl);
+    $.ajax({
+        // url: baseUrl +'/User/',
+        url: 'http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/Parkspace/?Parkspace.parkid='+ $scope.parkid,
+        method: 'GET',
+        async: false,
+        success: function (data) {
+            if (data.Parkspace) {
+                $scope.rowCollection = data.Parkspace;
+                console.log($scope.rowCollection);
+                // alert('success!');
+            }
+        }
+    });
+
+
 
     $scope.changeView = function () {
         $scope.listshow = !$scope.listshow;
@@ -80,11 +95,50 @@ function SpaceCtrl($scope,$state,$stateParams) {
         });
     };
 
-
-
     $scope.spaceqrCode =function(row){
         $state.go('qrCode',{id:row.id});
         console.log(row.id);
     }
+
+    $scope.seeCar = function (row) {
+        $scope.userid;
+        if(row.isfull == 0){
+            alert('当前停车位没有停车！');
+        }
+        else {
+            $.ajax({
+                url: 'http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/Parkrecord/?' +
+                'Parkrecord.isleave=0&parkspaceid='+row.id,
+                method: 'GET',
+                async: false,
+                success: function (data) {
+                    if (data.Parkrecord) {
+                        $scope.userid = data.Parkrecord[0].userid;
+                        console.log(data.Parkrecord[0]);
+                        // console.log(data.Parkrecord[0].userid);
+                        // console.log($scope.userid);
+                    }
+                }
+            }).done(function () {
+                console.log($scope.userid);
+                $.ajax({
+                    url: 'http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/User/?' +
+                    'User.userid=' + $scope.userid,
+                    method: 'GET',
+                    async: false,
+                    success: function (data) {
+                        if (data.User) {
+                            console.log(data.User[0]);
+                            cartype = data.User[0].cartype;
+                            carid = data.User[0].carid;
+                            // alert('success!');
+                            alert(cartype + ',' + carid);
+                        }
+                    }
+                });
+            })
+        }
+    }
+
 
 }

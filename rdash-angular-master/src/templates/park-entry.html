@@ -1,10 +1,10 @@
 <div class="col-xs-12">
-    <uib-alert  type="success" >停车场管理：包括停车场的增删改查</uib-alert>
+    <uib-alert  type="success" >停车场入口管理：包括停车场入口的增删改查</uib-alert>
 </div>
 
 <div class="col-xs-12">
     <rd-widget >
-        <rd-widget-header icon="fa-tasks" title="停车入口查询">
+        <rd-widget-header icon="fa-tasks" title="停车场入口查询">
             <button class="btn btn-sm btn-info" style="width: 20%" ng-click="search()">查询</button>
         </rd-widget-header>
         <!--<rd-widget-body classes="medium no-padding">-->
@@ -48,22 +48,17 @@
                 </tr>
                 </tbody>
             </table>
+
         </div>
         <!--</rd-widget-body>-->
     </rd-widget>
 </div>
 
-<div class="col-xs-12" ng-controller="EntryCtrl">
+<div class="col-xs-12">
     <rd-widget >
-        <rd-widget-header icon="fa-tasks" title="停车入口查询">
+        <rd-widget-header icon="fa-tasks" title="停车场入口创建">
+            <button class="btn btn-sm btn-info" style="width: 20%" ng-click="goToAdd()">创建</button>
         </rd-widget-header>
-        <rd-widget-body>
-            <p>新建入口</p>
-            <input type="number" data-ng-model="entryx" placeholder="请输入行坐标"/>
-            <input type="number" data-ng-model="entryy" placeholder="请输入列坐标"/>
-            <br>
-            <button ng-click="createEntry()">创建</button>
-        </rd-widget-body>
     </rd-widget>
 
 </div>

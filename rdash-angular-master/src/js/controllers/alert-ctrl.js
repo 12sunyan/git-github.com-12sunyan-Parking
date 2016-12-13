@@ -8,11 +8,6 @@ angular
 
 function AlertsCtrl($scope,$state) {
 
-    $scope.test = function(){
-        alert('跳转页面');
-      $state.go('lot');
-    };
-
     $scope.alerts = [{
         type: 'success',
         msg: '欢迎登陆停车场管理系统!'
