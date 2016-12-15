@@ -8,10 +8,10 @@
         <!--<rd-widget-header icon="fa-tasks" title="二维码生成">-->
         <!--</rd-widget-header>-->
         <div class="table-responsive" style="width: 400px;height: 400px" >
-            请输入停车场ID &nbsp;<input ng-model="myCode" /><br>
-            <button class="btn btn-sm btn-info" style="margin-left: 5%;width:40%" ng-click="getCodeImg()">点击生成二维码</button> <br>
-            <div id = "myqr" ng-show="myShow" style="width:100px; height:100px; margin-left: 15%"></div>
+            <input ng-model="myCode" placeholder="请输入停车场ID" style="width: 160px;height: 30px">
+            <button class="btn btn-sm btn-info" style="margin-left: 15%;width:40%" ng-click="getCodeImg()">点击生成二维码</button> <br><br>
 
+            <div id = "myqr" ng-show="myShow" style="width:100px; height:100px; margin-left: 15%"></div>
             <div id="qrcode" ng-show="showQr" style="width:200px; height:200px; margin-left: 15%"></div>
         </div>
     <!--</rd-widget>-->

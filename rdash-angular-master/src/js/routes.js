@@ -21,6 +21,7 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
             })
             .state('user', {
                 url: '/user',
+                controller: 'UserCtrl',
                 templateUrl: 'templates/user-manager.html'
             })
             .state('lot',{

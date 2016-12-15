@@ -61,7 +61,16 @@ angular.module('parking', ['ionic','ngCordova'])
           templateUrl: 'templates/parking.html'
         }
       }
-  }).state('lotsearch', {
+  }).state('main.search', {
+    url: '/search',
+    views:{
+      'search':{
+        controller: 'SearchCtrl',
+        templateUrl: 'templates/search.html'
+      }
+    }
+  })
+    .state('lotsearch', {
     cache:false,
     url: '/lotsearch',
     controller: 'LotSearchCtrl',
@@ -107,5 +116,5 @@ angular.module('parking', ['ionic','ngCordova'])
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
   $ionicConfigProvider.tabs.position("bottom");
-  $ionicConfigProvider.tabs.style("standard");  
+  $ionicConfigProvider.tabs.style("standard");
 });

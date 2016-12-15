@@ -3,10 +3,10 @@
  */
 
 angular.module('RDash')
-    .controller('UserCtrl', ['$scope', '$cookieStore', UserCtrl]);
+    .controller('UserCtrl', ['$scope', UserCtrl]);
 
 
-function UserCtrl($scope,baseUrl) {
+function UserCtrl($scope) {
 
     $scope.showAlert = true;
     $scope.closeAlert = function() {
@@ -49,7 +49,6 @@ function UserCtrl($scope,baseUrl) {
 
     $scope.deleteUser = function (row) {
 
-        var txt;
         var r = confirm("确认删除？");
         if (r == true) {
             console.log('delete');

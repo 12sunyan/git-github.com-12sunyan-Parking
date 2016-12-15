@@ -16,6 +16,19 @@ function OrderCtrl($scope) {
             if (data.Parkrecord) {
                 $scope.rowCollection = data.Parkrecord;
                 console.log($scope.rowCollection);
+                if($scope.rowCollection){
+                    $scope.rowCollection.forEach(function(row){
+                        // $scope.userid = list
+                        row.entertime = parseDate(new Date(Date.parse(row.entertime)));
+                        if(row.leavetime == null){
+                            row.leavetime = "尚未离开";
+                        }
+                        else{
+                            row.leavetime = parseDate(new Date(Date.parse(row.leavetime)));
+                        }
+
+                    })
+                }
                 // alert('success!');
             }
         }
@@ -45,9 +58,33 @@ function OrderCtrl($scope) {
                 if (data.Parkrecord) {
                     $scope.rowCollection = data.Parkrecord;
                     console.log($scope.rowCollection);
+                    if($scope.rowCollection){
+                        $scope.rowCollection.forEach(function(row){
+                            // $scope.userid = list
+                            row.entertime = parseDate(new Date(Date.parse(row.entertime)));
+                            if(row.leavetime == null){
+                                row.leavetime = "尚未离开";
+                            }
+                            else{
+                                row.leavetime = parseDate(new Date(Date.parse(row.leavetime)));
+                            }
+                        })
+                    }
                     alert('success!');
                 }
             }
         });
     };
+
+    function parseDate(d) {
+            // var   year=d.getYear();
+            var   month = d.getMonth()+1;
+            var   date = d.getDate();
+            var   hour = d.getHours();
+            var   minute = d.getMinutes();
+            var   second = d.getSeconds();
+            return   "2016-"+ month+"-"+ date + "   "+ hour+ ":" + minute+ ":" + second;
+
+    }
+
 }

@@ -15,19 +15,23 @@ function SpaceCtrl($scope,$state,$stateParams) {
     $scope.listshow = true;
     $scope.listMessage = '收起';
     // alert(baseUrl);
-    $.ajax({
-        // url: baseUrl +'/User/',
-        url: 'http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/Parkspace/?Parkspace.parkid='+ $scope.parkid,
-        method: 'GET',
-        async: false,
-        success: function (data) {
-            if (data.Parkspace) {
-                $scope.rowCollection = data.Parkspace;
-                console.log($scope.rowCollection);
-                // alert('success!');
+    if($scope.parkid != 0)
+    {
+        $.ajax({
+            // url: baseUrl +'/User/',
+            url: 'http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/Parkspace/?Parkspace.parkid='+ $scope.parkid,
+            method: 'GET',
+            async: false,
+            success: function (data) {
+                if (data.Parkspace) {
+                    $scope.rowCollection = data.Parkspace;
+                    console.log($scope.rowCollection);
+                    // alert('success!');
+                }
             }
-        }
-    });
+        });
+    }
+
 
 
 
@@ -122,15 +126,14 @@ function SpaceCtrl($scope,$state,$stateParams) {
             }).done(function () {
                 console.log($scope.userid);
                 $.ajax({
-                    url: 'http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/User/?' +
-                    'User.userid=' + $scope.userid,
+                    url: 'http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/User/' + $scope.userid,
                     method: 'GET',
                     async: false,
                     success: function (data) {
-                        if (data.User) {
-                            console.log(data.User[0]);
-                            cartype = data.User[0].cartype;
-                            carid = data.User[0].carid;
+                        console.log(data);
+                        if (data) {
+                            cartype = data.cartype;
+                            carid = data.carid;
                             // alert('success!');
                             alert(cartype + ',' + carid);
                         }

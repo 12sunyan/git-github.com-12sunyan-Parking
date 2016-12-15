@@ -12,20 +12,20 @@ function EntryCtrl($scope,$state,$stateParams) {
 
     $scope.parkid = $stateParams.id;
     console.log($scope.parkid);
-
-    $.ajax({
-        // url: baseUrl +'/User/',
-        url: 'http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/Parkentry/?Parkentry.parkid='+ $scope.parkid,
-        method: 'GET',
-        async: false,
-        success: function (data) {
-            if (data.Parkentry) {
-                $scope.rowCollection = data.Parkentry;
-                console.log($scope.rowCollection);
+    if($scope.parkid !=0){
+        $.ajax({
+            // url: baseUrl +'/User/',
+            url: 'http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/Parkentry/?Parkentry.parkid='+ $scope.parkid,
+            method: 'GET',
+            async: false,
+            success: function (data) {
+                if (data.Parkentry) {
+                    $scope.rowCollection = data.Parkentry;
+                    console.log($scope.rowCollection);
+                }
             }
-        }
-    });
-
+        });
+    }
 
 
     $scope.goToAdd = function(){
