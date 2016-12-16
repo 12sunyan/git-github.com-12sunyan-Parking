@@ -50,33 +50,38 @@ function SpaceCtrl($scope,$state,$stateParams) {
     $scope.createSpace = function () {
         var i = 1, j = 1;
         console.log($scope.xnum +','+ $scope.ynum);
-        for (i=1; i <= $scope.xnum; i++) {
-            for (j=1; j <= $scope.ynum; j++) {
-                var data = {
-                    "parkid": $scope.parkid,
-                    "isfull": 0,
-                    "xpos": i,
-                    "ypos": j
-                };
-                console.log(data);
-                $.ajax({
-                    // url: baseUrl +'/User/',
-                    url: 'http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/Parkspace/',
-                    method: 'POST',
-                    async: false,
-                    data: JSON.stringify(data),
-                    // headers: {'Content-Type': 'application/json'},
-                    contentType: 'application/json',
-                    success: function (data) {
-                        if (data) {
-                            console.log(data);
-                            // alert('create space success!');
+        if(!$scope.parkid || !$scope.xnum || !$scope.ynum){
+            alert('关键信息为空！');
+        }
+        else{
+            for (i=1; i <= $scope.xnum; i++) {
+                for (j=1; j <= $scope.ynum; j++) {
+                    var data = {
+                        "parkid": $scope.parkid,
+                        "isfull": 0,
+                        "xpos": i,
+                        "ypos": j
+                    };
+                    console.log(data);
+                    $.ajax({
+                        // url: baseUrl +'/User/',
+                        url: 'http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/Parkspace/',
+                        method: 'POST',
+                        async: false,
+                        data: JSON.stringify(data),
+                        // headers: {'Content-Type': 'application/json'},
+                        contentType: 'application/json',
+                        success: function (data) {
+                            if (data) {
+                                console.log(data);
+                                // alert('create space success!');
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
-         }
-         alert('创建完成');
+            alert('创建完成');
+        }
     };
 
 

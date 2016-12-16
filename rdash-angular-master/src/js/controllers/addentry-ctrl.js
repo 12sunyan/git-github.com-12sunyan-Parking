@@ -16,31 +16,35 @@ function AddEntryCtrl($scope,$state,$stateParams) {
         console.log($scope.entryx);
         console.log($scope.entryy);
 
-        var data = {
-            "parkid": $scope.parkid,
-            // "x": $scope.entryx,
-            // "y": $scope.entryy
-            "x": parseInt($scope.entryx),
-            "y": parseInt($scope.entryy)
-        };
+        if(!$scope.parkid || !$scope.entryx || !$scope.entryy){
+            alert("关键信息为空");
+        }
+        else{
+            var data = {
+                "parkid": $scope.parkid,
+                // "x": $scope.entryx,
+                // "y": $scope.entryy
+                "x": parseInt($scope.entryx),
+                "y": parseInt($scope.entryy)
+            };
 
-        console.log(data);
-        $.ajax({
-            // url: baseUrl +'/User/',
-            url: 'http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/Parkentry/',
-            method: 'POST',
-            async: false,
-            data: JSON.stringify(data),
-            // headers: {'Content-Type': 'application/json'},
-            contentType: 'application/json',
-            success: function (data) {
-                if (data) {
-                    console.log(data);
-                    alert('create entry success!');
-                    $state.go('entry',{id:$scope.parkid});
+            console.log(data);
+            $.ajax({
+                // url: baseUrl +'/User/',
+                url: 'http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/Parkentry/',
+                method: 'POST',
+                async: false,
+                data: JSON.stringify(data),
+                // headers: {'Content-Type': 'application/json'},
+                contentType: 'application/json',
+                success: function (data) {
+                    if (data) {
+                        console.log(data);
+                        alert('create entry success!');
+                        $state.go('entry',{id:$scope.parkid});
+                    }
                 }
-            }
-        });
-        // }
+            });
+        }
     }
 }

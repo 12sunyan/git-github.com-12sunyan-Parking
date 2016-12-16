@@ -9,6 +9,8 @@ angular.module('RDash')
     .controller('EntryCtrl', ['$scope','$state','$stateParams', EntryCtrl]);
 
 function EntryCtrl($scope,$state,$stateParams) {
+    $scope.listshow = true;
+    $scope.listMessage = '收起';
 
     $scope.parkid = $stateParams.id;
     console.log($scope.parkid);
@@ -51,6 +53,18 @@ function EntryCtrl($scope,$state,$stateParams) {
         });
     };
 
+
+    $scope.changeView = function () {
+        $scope.listshow = !$scope.listshow;
+        if ($scope.listshow) {
+            $scope.listMessage = '收起';
+        }
+        else {
+            $scope.listMessage = '显示';
+        }
+
+    };
+
     $scope.deleteEntry = function (row) {
         var txt;
         var r = confirm("确认删除？");
@@ -88,6 +102,43 @@ function EntryCtrl($scope,$state,$stateParams) {
     $scope.entryCode =function(row){
         $state.go('qrCode',{id:row.id});
         console.log(row.id);
+    }
+
+
+
+    $scope.createEntry = function () {
+        console.log($scope.entryx);
+        console.log($scope.entryy);
+
+        if(!$scope.parkid || !$scope.entryx || !$scope.entryy){
+            alert("关键信息为空");
+        }
+        else{
+            var data = {
+                "parkid": $scope.parkid,
+                // "x": $scope.entryx,
+                // "y": $scope.entryy
+                "x": parseInt($scope.entryx),
+                "y": parseInt($scope.entryy)
+            };
+
+            console.log(data);
+            $.ajax({
+                // url: baseUrl +'/User/',
+                url: 'http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/Parkentry/',
+                method: 'POST',
+                async: false,
+                data: JSON.stringify(data),
+                // headers: {'Content-Type': 'application/json'},
+                contentType: 'application/json',
+                success: function (data) {
+                    if (data) {
+                        console.log(data);
+                        alert('create entry success!');
+                    }
+                }
+            });
+        }
     }
 
 }

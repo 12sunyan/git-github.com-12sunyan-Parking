@@ -19,6 +19,7 @@ function LotCtrl($scope,$state) {
         success: function (data) {
             if (data.Parklot) {
                 $scope.rowCollection = data.Parklot;
+                $scope.lotnum = $scope.rowCollection.length;
                 console.log($scope.rowCollection);
                 // alert('success!');
             }

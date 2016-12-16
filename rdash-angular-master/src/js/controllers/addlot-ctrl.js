@@ -25,23 +25,28 @@ function AddLotCtrl($scope, $state) {
             "intro": $scope.newlot.intro
         };
         console.log(data);
-        $.ajax({
-            // url: baseUrl +'/User/',
-            url: 'http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/Parklot/',
-            method: 'POST',
-            // data: data,
-            data: JSON.stringify(data),
-            // headers: {'Content-Type': 'application/json'},
-            contentType: 'application/json',
-            async: false,
-            success: function (data) {
-                if (data) {
-                    console.log(data);
-                    alert('success!'+data.id);
+        if(!data.longitude || !data.latitude || !data.address || !data.name ||
+            !data.spacenum || !data.hourcharge ||!data.xpos ||! data.ypos ||!data.intro){
+            alert('关键信息不能为空！');
+        }
+        else {
+            $.ajax({
+                // url: baseUrl +'/User/',
+                url: 'http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/Parklot/',
+                method: 'POST',
+                // data: data,
+                data: JSON.stringify(data),
+                // headers: {'Content-Type': 'application/json'},
+                contentType: 'application/json',
+                async: false,
+                success: function (data) {
+                    if (data) {
+                        console.log(data);
+                        alert('success!' + data.id);
 
+                    }
                 }
-            }
-        }).done(function (data) {
+            }).done(function (data) {
 
                 var url = "http://112.74.62.114:8080/Entity/Udb7fe87147e10/SZLKD/Parklot/" + data.id;
                 console.log(url);
@@ -65,7 +70,10 @@ function AddLotCtrl($scope, $state) {
                     }
                 })
             });
-        };
+        }
+    };
+
+
 
 
 

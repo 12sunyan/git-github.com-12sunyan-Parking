@@ -15,6 +15,7 @@ function OrderCtrl($scope) {
         success: function (data) {
             if (data.Parkrecord) {
                 $scope.rowCollection = data.Parkrecord;
+                $scope.ordernum = $scope.rowCollection.length;
                 console.log($scope.rowCollection);
                 if($scope.rowCollection){
                     $scope.rowCollection.forEach(function(row){

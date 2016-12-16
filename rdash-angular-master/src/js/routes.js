@@ -22,7 +22,8 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
             .state('user', {
                 url: '/user',
                 controller: 'UserCtrl',
-                templateUrl: 'templates/user-manager.html'
+                templateUrl: 'templates/user-manager.html',
+                cache:false //每次回到这个页面时自动强制刷新
             })
             .state('lot',{
                 url: '/lot',
@@ -39,6 +40,7 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
             })
             .state('order',{
                 url: '/order',
+                controller: 'OrderCtrl',
                 templateUrl: 'templates/park-order.html'
             })
             .state('qrCode',{
@@ -70,6 +72,11 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
                 controller: 'EditLotCtrl',
                 templateUrl: 'templates/editlot.html',
                 params:{'id':0}
-            });
+            })
+            .state('addUser',{
+                url: '/addUser',
+                controller: 'AddUserCtrl',
+                templateUrl: 'templates/adduser.html',
+        });
     }
 ]);
