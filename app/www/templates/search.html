@@ -22,11 +22,11 @@
       <!--<p style="margin-left: 50%">{{ first| date:'yyyy-MM-ss HH:mm:ss'}}</p>-->
       <!--最近停车:-->
       <!--{{ last | date:'yyyy-MM-ss HH:mm:ss'}}<br>-->
-      首次停车：<input data-ng-model="first"  style="width: 50%;margin-left: 28%"><br>
-      最近停车：<input data-ng-model="last" style="width: 50%;margin-left: 28%"><br>
+      首次停车：<a data-ng-model="first"  style="width: 50%;margin-left: 28%;color: #111;">{{first}}</a><br>
+      最近停车：<a data-ng-model="last" style="width: 50%;margin-left: 28%;color: #111;">{{last}}</a><br>
 
-      停车次数：<input data-ng-model="times" style="margin-left: 20%; width: 50%;text-align: right"><br>
-      停车费用: <input data-ng-model="total" style="margin-left: 23%; width: 50%;text-align: right"><br>
+      停车次数：<a data-ng-model="times" style="margin-left: 28%; width: 50%;color: #111;">{{times}}</a><br>
+      停车费用：<a data-ng-model="total" style="margin-left: 28%; width: 50%;color: #111;">{{total}}</a><br>
     </div>
 
 

@@ -24,9 +24,9 @@ angular.module('parking').filter("image", function(baseUrl, port,fileurl){
     console.log(total);
     if($scope.lists) {
       $scope.lists.forEach(function (list) {
-        if (list.entertime < first)
+        if (parseDate(new Date(Date.parse(list.entertime))) < parseDate(new Date(Date.parse(first))))
           first = list.entertime;
-        if (list.leavetime > last)
+        if (parseDate(new Date(Date.parse(list.leavetime))) > parseDate(new Date(Date.parse(last))))
           last = list.leavetime;
         total = list.charge + total;
       });
@@ -51,11 +51,41 @@ angular.module('parking').filter("image", function(baseUrl, port,fileurl){
   function parseDate(d) {
       // var   year=d.getYear();
       var   month = d.getMonth()+1;
+      if(month<10){
+        var monthstr = "0" + month.toString();
+      }
+      else{
+        var monthstr = month.toString();
+      }
       var   date = d.getDate();
+      if(date<10){
+        var datestr = "0" + date.toString();
+      }
+      else{
+        var datestr = date.toString();
+      }
       var   hour = d.getHours();
+      if(hour<10){
+        var hourstr = "0" + hour.toString();
+      }
+      else{
+        var hourstr = hour.toString();
+      }
       var   minute = d.getMinutes();
+      if(minute<10){
+        var minutestr = "0" + minute.toString();
+      }
+      else{
+        var minutestr = minute.toString();
+      }
       var   second = d.getSeconds();
-      return   "2016-"+ month+"-"+ date + "   "+ hour+ ":" + minute+ ":" + second;
+      if(second<10){
+        var secondstr = "0" + second.toString();
+      }
+      else{
+        var secondstr = second.toString();
+      }     
+      return   "2016-"+ monthstr+"-"+ datestr + "   "+ hourstr+ ":" + minutestr+ ":" + secondstr;
     }
 
 
